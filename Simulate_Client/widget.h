@@ -1,0 +1,47 @@
+#ifndef WIDGET_H
+#define WIDGET_H
+
+#include <QWidget>
+#include <QObject>
+#include <QTcpSocket>
+#include <QAbstractSocket>
+#include <QtCore>
+#include <QSerialPort>
+
+namespace Ui {
+class Widget;
+}
+
+class Widget : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit Widget(QWidget *parent = 0);
+    ~Widget();
+
+public slots:
+
+    void connected();
+    void disconnected();
+    void readyRead_socket();
+
+private slots:
+
+    void on_pushButton_Send_clicked();
+
+    void on_pushButton_Connect_clicked();
+
+    void on_pushButton_Disconnect_clicked();
+
+private:
+    Ui::Widget *ui;
+
+    QTcpSocket *socket;
+
+    QJsonValue ID_value;
+
+    void DONE_Respond();
+};
+
+#endif // WIDGET_H

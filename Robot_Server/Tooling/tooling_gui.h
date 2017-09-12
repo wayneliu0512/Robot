@@ -7,7 +7,7 @@
 #include <QTime>
 #include <Tooling/tooling.h>
 #include <QLCDNumber>
-
+#include <QListWidget>
 class Tooling_GUI : public QObject
 {
     Q_OBJECT
@@ -19,13 +19,15 @@ public:
 
     ~Tooling_GUI();
 
-    Tooling_GUI(Tooling *_tooling, QLabel* _label, QLabel* _light, QLCDNumber* _clock, QTimer* _flashTimer);
+    Tooling_GUI(Tooling *_tooling, QListWidget* _list, QLabel* _light, QLCDNumber* _clock, QTimer* _flashTimer);
 
 private:
 
     Tooling* tooling;
 
-    QLabel *label, *light;
+    QLabel *light;
+
+    QListWidget *list;
 
     QTimer *flashTimer, *clockTimer;
 
@@ -40,6 +42,7 @@ private:
 private slots:
 
     void updateGUI(Tooling::State _state);
+    void update_GUI_Message(QString _str);
 
     void flashYellowTimeout();
     void flashGreenTimeout();

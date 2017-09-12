@@ -9,6 +9,7 @@ SNpreScanDialog::SNpreScanDialog(StartUpSetting *_setting, QWidget *parent) :
     ui->setupUi(this);
 
     newOffsetList = QVector<Base>(3);
+
 }
 
 SNpreScanDialog::~SNpreScanDialog()

@@ -37,6 +37,7 @@ public:
 signals:
 
     void update(Tooling_Communication::State);
+    void update_GUI_Message(QString);
 
 private:
 

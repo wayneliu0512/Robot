@@ -9,7 +9,7 @@ QT       += core gui \
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Arm_Server_5.1
+TARGET = Robot_Server
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use

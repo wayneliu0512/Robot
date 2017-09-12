@@ -16,6 +16,9 @@ Client::Client(QObject *parent) :
     connect(serial, SIGNAL(readyRead()), this, SLOT(readyRead_serial()));
     serial->setPortName(com);
     serial->setBaudRate(QSerialPort::Baud57600);
+    serial->setStopBits(QSerialPort::OneStop);
+    serial->setDataBits(QSerialPort::Data8);
+    serial->setParity(QSerialPort::NoParity);
 
     //initailize Timer
     timer = new QTimer;
@@ -130,16 +133,33 @@ void Client::readyRead_serial()
     qDebug() << "dataBuffer << " + dataBuffer;
 
     //DOS Boot
-    if(dataBuffer.contains(0x30)) // char "0"
+    if(dataBuffer.contains(";"))
     {
-        timerCounter = 0;
+        qDebug() << "data << " + dataBuffer;
+        if(dataBuffer.contains("PASS"))
+        {
+            qDebug() << "pass";
+            timer->stop();
+            controlWAutoMESProgram_PASS();
 
-        serial->write("1");
-        qDebug() << "SendToDOS >> 1";
+            dataBuffer.clear();
+        }else if(dataBuffer.contains("FAIL"))
+        {
+            qDebug() << "fail";
+            timer->stop();
+            controlWAutoMESProgram_FAIL();
 
-        socket->write("still online");
-        qDebug() << "SendToSocket >> still online...";
+            dataBuffer.clear();
+        }else
+        {
+            timerCounter = 0;
 
+            serial->write("1");
+            qDebug() << "SendToDOS >> 1";
+            dataBuffer.remove(dataBuffer.length()-1,1);
+            socket->write(dataBuffer);
+            qDebug() << "SendToSocket >> " + dataBuffer;
+        }
         dataBuffer.clear();
     }
     //SN request
@@ -156,22 +176,6 @@ void Client::readyRead_serial()
         QString sendData = SN + "1" + MAC1 + "                          "; // 26 spaces for Jastin.
         serial->write(sendData.toLocal8Bit().data());
         qDebug() << "SendToDOS >> " + sendData;
-
-        dataBuffer.clear();
-    }
-    //DOS test pass
-    else if(dataBuffer.contains(0x50)) // char "P"
-    {
-        timer->stop();
-        controlWAutoMESProgram_PASS();
-
-        dataBuffer.clear();
-    }
-    //DOS test fail
-    else if(dataBuffer.contains(0x46)) // char "F"
-    {
-        timer->stop();
-        controlWAutoMESProgram_FAIL();
 
         dataBuffer.clear();
     }

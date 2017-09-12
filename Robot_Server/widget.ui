@@ -23,9 +23,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>170</y>
+     <y>120</y>
      <width>631</width>
-     <height>111</height>
+     <height>171</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -33,7 +33,7 @@
      <widget class="QGroupBox" name="groupBox_2">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
       <property name="title">
@@ -43,7 +43,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>30</y>
          <width>51</width>
          <height>51</height>
         </rect>
@@ -64,30 +64,11 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_Box1">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>80</y>
-         <width>101</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <stylestrategy>PreferAntialias</stylestrategy>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLCDNumber" name="lcdNumber_Box1">
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>30</y>
+         <y>40</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -99,42 +80,33 @@
         <number>0</number>
        </property>
       </widget>
+      <widget class="QListWidget" name="listWidget_Box1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>171</width>
+         <height>71</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="1" column="1">
      <widget class="QGroupBox" name="groupBox_3">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
       <property name="title">
        <string>Tooling2</string>
       </property>
-      <widget class="QLabel" name="label_Box2">
-       <property name="geometry">
-        <rect>
-         <x>80</x>
-         <y>80</y>
-         <width>121</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <stylestrategy>PreferAntialias</stylestrategy>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="pixmap_Box2">
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>30</y>
          <width>51</width>
          <height>51</height>
         </rect>
@@ -159,7 +131,7 @@
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>30</y>
+         <y>40</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -168,13 +140,23 @@
         <enum>QLCDNumber::Flat</enum>
        </property>
       </widget>
+      <widget class="QListWidget" name="listWidget_Box2">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>171</width>
+         <height>71</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
     </item>
     <item row="1" column="2">
      <widget class="QGroupBox" name="groupBox_4">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
       <property name="title">
@@ -184,7 +166,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>40</y>
+         <y>30</y>
          <width>51</width>
          <height>51</height>
         </rect>
@@ -205,36 +187,27 @@
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QLabel" name="label_Box3">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>80</y>
-         <width>131</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-         <stylestrategy>PreferAntialias</stylestrategy>
-        </font>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLCDNumber" name="lcdNumber_Box3">
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>30</y>
+         <y>40</y>
          <width>91</width>
          <height>31</height>
         </rect>
        </property>
        <property name="segmentStyle">
         <enum>QLCDNumber::Flat</enum>
+       </property>
+      </widget>
+      <widget class="QListWidget" name="listWidget_Box3">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>171</width>
+         <height>71</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -252,7 +225,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>12</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
@@ -419,8 +392,8 @@
     <rect>
      <x>20</x>
      <y>20</y>
-     <width>421</width>
-     <height>141</height>
+     <width>321</width>
+     <height>91</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -428,7 +401,7 @@
      <widget class="QGroupBox" name="groupBox_5">
       <property name="font">
        <font>
-        <pointsize>15</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
       <property name="title">
@@ -438,7 +411,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
+         <y>30</y>
          <width>51</width>
          <height>51</height>
         </rect>
@@ -463,7 +436,7 @@
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>50</y>
+         <y>30</y>
          <width>51</width>
          <height>21</height>
         </rect>
@@ -494,7 +467,7 @@
        <property name="geometry">
         <rect>
          <x>90</x>
-         <y>80</y>
+         <y>60</y>
          <width>51</width>
          <height>21</height>
         </rect>
@@ -519,7 +492,7 @@
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>50</y>
+         <y>30</y>
          <width>161</width>
          <height>21</height>
         </rect>
@@ -550,7 +523,7 @@
        <property name="geometry">
         <rect>
          <x>150</x>
-         <y>80</y>
+         <y>60</y>
          <width>161</width>
          <height>21</height>
         </rect>
@@ -595,7 +568,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>12</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
@@ -617,7 +590,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>12</pointsize>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>

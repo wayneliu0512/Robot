@@ -6,6 +6,8 @@ Tooling::Tooling(int _toolingNum)
     toolingNum = _toolingNum;
     socket = new QTcpSocket;
 
+    communication = new Tooling_Communication(toolingNum);
+
     msgBox.setStandardButtons(QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
     msgBox.setIcon(QMessageBox::Warning);
@@ -30,7 +32,6 @@ Tooling::~Tooling()
 //設定socket
 void Tooling::setSocket(QTcpSocket *tcpsocket)
 {
-    communication = new Tooling_Communication(toolingNum);
     connect(communication, SIGNAL(update(Tooling_Communication::State)),
             this, SLOT(updateConnectionState(Tooling_Communication::State)));
     communication->setSocket(tcpsocket);

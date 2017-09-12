@@ -26,6 +26,8 @@ public:
 
     ~Tooling();
 
+    Tooling_Communication *communication;
+
     int offsetNum; //所對應的Base座標系 是哪個Base
 
     int toolingNum; //第幾號機箱
@@ -46,8 +48,6 @@ signals:
     void updateGUI(Tooling::State);
 
 private:
-
-    Tooling_Communication *communication;
 
     QTcpSocket *socket;
 

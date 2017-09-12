@@ -27,6 +27,8 @@ void Tooling_Communication::readyRead()
     qDebug() << "ReadFromTooling" + QString::number(toolingNum) + ": " + str;
     EventMessage msg(str, toolingNum, EventMessage::NOACK, EventMessage::FromTooling);
     fireEvent(command.tooling_communication_event.NoACK, msg);
+
+    emit update_GUI_Message(str);
 }
 
 void Tooling_Communication::sendData(QString str)

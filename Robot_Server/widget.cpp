@@ -26,13 +26,13 @@ Widget::Widget(QWidget *parent) :
     socket = new QTcpSocket;
 
     tooling_1 = new Tooling(1);
-    tooling_GUI_1 = new Tooling_GUI(tooling_1, ui->label_Box1, ui->pixmap_Box1, ui->lcdNumber_Box1, flashTimer);
+    tooling_GUI_1 = new Tooling_GUI(tooling_1, ui->listWidget_Box1, ui->pixmap_Box1, ui->lcdNumber_Box1, flashTimer);
 
     tooling_2 = new Tooling(2);
-    tooling_GUI_2 = new Tooling_GUI(tooling_2, ui->label_Box2, ui->pixmap_Box2, ui->lcdNumber_Box2, flashTimer);
+    tooling_GUI_2 = new Tooling_GUI(tooling_2, ui->listWidget_Box2, ui->pixmap_Box2, ui->lcdNumber_Box2, flashTimer);
 
     tooling_3 = new Tooling(3);
-    tooling_GUI_3 = new Tooling_GUI(tooling_3, ui->label_Box3, ui->pixmap_Box3, ui->lcdNumber_Box3, flashTimer);
+    tooling_GUI_3 = new Tooling_GUI(tooling_3, ui->listWidget_Box3, ui->pixmap_Box3, ui->lcdNumber_Box3, flashTimer);
 
     ccd = new CCD;
     ccd_GUI = new CCD_GUI(ccd, ui->pixmap_Barcode, ui->label_SN, ui->label_MAC);
@@ -315,3 +315,5 @@ void Widget::flashingTimerReset()
         flashCounter = 0;
     flashCounter++;
 }
+
+

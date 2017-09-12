@@ -5,15 +5,16 @@ Tooling_GUI::Tooling_GUI(QObject *parent) :QObject(parent)
 {
 }
 
-Tooling_GUI::Tooling_GUI(Tooling *_tooling, QLabel *_label, QLabel *_light, QLCDNumber* _clock, QTimer* _flashTimer)
+Tooling_GUI::Tooling_GUI(Tooling *_tooling, QListWidget *_list, QLabel *_light, QLCDNumber* _clock, QTimer* _flashTimer)
 {
-    label = _label;
+    list = _list;
     light = _light;
     clock = _clock;
     flashTimer = _flashTimer;
 
     tooling = _tooling;
     connect(tooling, SIGNAL(updateGUI(Tooling::State)), this, SLOT(updateGUI(Tooling::State)));
+    connect(tooling->communication, SIGNAL(update_GUI_Message(QString)), this, SLOT(update_GUI_Message(QString)));
 
     clockTimer = new QTimer;
     connect(clockTimer, SIGNAL(timeout()), this, SLOT(clockTimeUpdate()));
@@ -38,6 +39,11 @@ void Tooling_GUI::initializeClock()
     clock->display(clockText);
 }
 
+void Tooling_GUI::update_GUI_Message(QString _str)
+{
+    list->addItem(_str);
+}
+
 void Tooling_GUI::updateGUI(Tooling::State _state)
 {
     switch(_state)
@@ -45,6 +51,7 @@ void Tooling_GUI::updateGUI(Tooling::State _state)
     case Tooling::ONLINE:
         clockTimer->stop();
         setLight(GREEN, false);
+        list->clear();
         break;
     case Tooling::OFFLINE:
         clockTimer->stop();

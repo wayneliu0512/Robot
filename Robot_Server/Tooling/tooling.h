@@ -43,6 +43,9 @@ public:
         emit updateGUI(state);
     }
 
+    //紀錄目前機台的狀態, 給GUI用
+    State state;
+
 signals:
 
     void updateGUI(Tooling::State);
@@ -54,9 +57,6 @@ private:
     Command command;
 
     QMessageBox msgBox;
-
-    //紀錄目前機台的狀態, 給GUI用
-    State state;
 
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.

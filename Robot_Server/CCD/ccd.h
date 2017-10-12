@@ -33,6 +33,8 @@ public:
         emit updateGUI(state);
     }
 
+    State state;
+
 signals:
 
     void updateGUI(CCD::State);
@@ -46,8 +48,6 @@ private:
     QString ID;
 
     int toolingNum;
-
-    State state;
 
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.

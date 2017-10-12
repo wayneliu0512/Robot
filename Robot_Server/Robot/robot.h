@@ -40,6 +40,7 @@ public:
         emit updateGUI(state);
     }
 
+    State state;
 signals:
 
     void updateGUI(Robot::State);
@@ -54,7 +55,6 @@ private:
     int port;
     QTcpSocket *socket;
     Command command;
-    State state;
 
     QMessageBox msgBox;
     //監聽收到DONE封包事件

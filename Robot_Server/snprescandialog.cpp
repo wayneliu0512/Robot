@@ -8,6 +8,7 @@ SNpreScanDialog::SNpreScanDialog(StartUpSetting *_setting, QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     newOffsetList = QVector<Base>(3);
 
 }
@@ -120,7 +121,7 @@ bool SNpreScanDialog::verifyInfoIsPass(const GroupBoxData &_groupbox)
     }
 
     //檢查模組座位置跟base位置是否吻合
-    if(_groupbox.moduleBase != _groupbox.base)
+    if(_groupbox.moduleBase.section('-', 1, 1) != _groupbox.base.section('-', 2, 2))
     {
         QMessageBox::critical(nullptr, "Error", "Module base can't match base", QMessageBox::Cancel, QMessageBox::Ok);
         return false;
@@ -151,7 +152,7 @@ bool SNpreScanDialog::verifyInfoIsPass(const GroupBoxData &_groupbox)
     }
 
     //檢查此base位置是否已經有擺放東西
-    if(!newOffsetList.at(_groupbox.base.toInt()-1).ID.isEmpty())
+    if(!newOffsetList.at(_groupbox.base.section('-',2,2).toInt()-1).ID.isEmpty())
     {
         QMessageBox::critical(nullptr, "Error", "Base conflict", QMessageBox::Cancel, QMessageBox::Ok);
         return false;
@@ -159,7 +160,7 @@ bool SNpreScanDialog::verifyInfoIsPass(const GroupBoxData &_groupbox)
     else
     {        
         //將檢查pass的offset加入新的offsetList
-        newOffsetList[_groupbox.base.toInt()-1] = offset;
+        newOffsetList[_groupbox.base.section('-',2,2).toInt()-1] = offset;
 
         //暫存Module 序號 比對預防衝突用
         moduleList.append(_groupbox.module);
@@ -177,8 +178,9 @@ Base SNpreScanDialog::adjustTooling3Offset(Base _offset)
 
 void SNpreScanDialog::on_lineEdit_Tooling_1_returnPressed()
 {
-    QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
+    ui->lineEdit_Tooling_1->setText(ui->lineEdit_Tooling_1->text().toUpper());
 
+    QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
     if(!rx.exactMatch(ui->lineEdit_Tooling_1->text()))
     {
         QMessageBox::critical(nullptr, "Error", "Syntax error!", QMessageBox::Cancel, QMessageBox::Ok);
@@ -194,7 +196,9 @@ void SNpreScanDialog::on_lineEdit_Tooling_1_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Base_1_returnPressed()
 {
-    QRegExp rx("^[0-9]{1,3}$");
+    ui->lineEdit_Base_1->setText(ui->lineEdit_Base_1->text().toUpper());
+
+    QRegExp rx("^TABLE-BASE-[0-9]{1,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Base_1->text()))
     {
@@ -212,7 +216,9 @@ void SNpreScanDialog::on_lineEdit_Base_1_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_ModuleBase_1_returnPressed()
 {
-    QRegExp rx("^[0-9]{1,3}$");
+    ui->lineEdit_ModuleBase_1->setText(ui->lineEdit_ModuleBase_1->text().toUpper());
+
+    QRegExp rx("^MBASE-[0-9]{1,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_ModuleBase_1->text()))
     {
@@ -230,6 +236,8 @@ void SNpreScanDialog::on_lineEdit_ModuleBase_1_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Module_1_returnPressed()
 {
+    ui->lineEdit_Module_1->setText(ui->lineEdit_Module_1->text().toUpper());
+
     QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Module_1->text()))
@@ -246,6 +254,8 @@ void SNpreScanDialog::on_lineEdit_Module_1_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Tooling_2_returnPressed()
 {
+    ui->lineEdit_Tooling_2->setText(ui->lineEdit_Tooling_2->text().toUpper());
+
     QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Tooling_2->text()))
@@ -264,7 +274,9 @@ void SNpreScanDialog::on_lineEdit_Tooling_2_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Base_2_returnPressed()
 {
-    QRegExp rx("^[0-9]{1,3}$");
+    ui->lineEdit_Base_2->setText(ui->lineEdit_Base_2->text().toUpper());
+
+    QRegExp rx("^TABLE-BASE-[0-9]{1,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Base_2->text()))
     {
@@ -282,7 +294,9 @@ void SNpreScanDialog::on_lineEdit_Base_2_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_ModuleBase_2_returnPressed()
 {
-    QRegExp rx("^[0-9]{1,3}$");
+    ui->lineEdit_ModuleBase_2->setText(ui->lineEdit_ModuleBase_2->text().toUpper());
+
+    QRegExp rx("^MBASE-[0-9]{1,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_ModuleBase_2->text()))
     {
@@ -300,6 +314,8 @@ void SNpreScanDialog::on_lineEdit_ModuleBase_2_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Module_2_returnPressed()
 {
+    ui->lineEdit_Module_2->setText(ui->lineEdit_Module_2->text().toUpper());
+
     QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Module_2->text()))
@@ -316,6 +332,8 @@ void SNpreScanDialog::on_lineEdit_Module_2_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Tooling_3_returnPressed()
 {
+    ui->lineEdit_Tooling_3->setText(ui->lineEdit_Tooling_3->text().toUpper());
+
     QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Tooling_3->text()))
@@ -334,7 +352,9 @@ void SNpreScanDialog::on_lineEdit_Tooling_3_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Base_3_returnPressed()
 {
-    QRegExp rx("^[0-9]{1,3}$");
+    ui->lineEdit_Base_3->setText(ui->lineEdit_Base_3->text().toUpper());
+
+    QRegExp rx("^TABLE-BASE-[0-9]{1,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Base_3->text()))
     {
@@ -352,7 +372,9 @@ void SNpreScanDialog::on_lineEdit_Base_3_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_ModuleBase_3_returnPressed()
 {
-    QRegExp rx("^[0-9]{1,3}$");
+    ui->lineEdit_ModuleBase_3->setText(ui->lineEdit_ModuleBase_3->text().toUpper());
+
+    QRegExp rx("^MBASE-[0-9]{1,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_ModuleBase_3->text()))
     {
@@ -370,6 +392,8 @@ void SNpreScanDialog::on_lineEdit_ModuleBase_3_returnPressed()
 
 void SNpreScanDialog::on_lineEdit_Module_3_returnPressed()
 {
+    ui->lineEdit_Module_3->setText(ui->lineEdit_Module_3->text().toUpper());
+
     QRegExp rx("^FX-[A-Z0-9]*-[0-9]{3,3}$");
 
     if(!rx.exactMatch(ui->lineEdit_Module_3->text()))

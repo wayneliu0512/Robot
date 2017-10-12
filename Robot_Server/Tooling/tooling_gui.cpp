@@ -20,12 +20,15 @@ Tooling_GUI::Tooling_GUI(Tooling *_tooling, QListWidget *_list, QLabel *_light, 
     connect(clockTimer, SIGNAL(timeout()), this, SLOT(clockTimeUpdate()));
     clockTimer->setInterval(1000);
 
+    testItemList = new QStringList;
+
     initializeClock();
 }
 
 Tooling_GUI::~Tooling_GUI()
 {
     delete clockTimer;
+    delete testItemList;
 }
 
 void Tooling_GUI::initializeClock()
@@ -41,7 +44,9 @@ void Tooling_GUI::initializeClock()
 
 void Tooling_GUI::update_GUI_Message(QString _str)
 {
-    list->addItem(_str);
+    testItemList->prepend(_str);
+    list->clear();
+    list->addItems(*testItemList);
 }
 
 void Tooling_GUI::updateGUI(Tooling::State _state)
@@ -51,6 +56,7 @@ void Tooling_GUI::updateGUI(Tooling::State _state)
     case Tooling::ONLINE:
         clockTimer->stop();
         setLight(GREEN, false);
+        testItemList->clear();
         list->clear();
         break;
     case Tooling::OFFLINE:

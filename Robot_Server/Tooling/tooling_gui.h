@@ -29,6 +29,8 @@ private:
 
     QListWidget *list;
 
+    QStringList *testItemList;
+
     QTimer *flashTimer, *clockTimer;
 
     QTime clockTime = QTime(0,0);

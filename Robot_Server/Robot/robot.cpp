@@ -30,11 +30,13 @@ Robot::~Robot()
 
 void Robot::connectToRobot()
 {
-    communication = new Robot_Communication(IP, port);
+    if(!communication)
+    {
+        communication = new Robot_Communication(IP, port);
 
-    connect(communication, SIGNAL(update(Robot_Communication::State)),
-            this, SLOT(updateConnectionState(Robot_Communication::State)));
-
+        connect(communication, SIGNAL(update(Robot_Communication::State)),
+                this, SLOT(updateConnectionState(Robot_Communication::State)));
+    }
     communication->connectToHost();
 }
 

@@ -50,7 +50,14 @@ void Robot_Communication::readyRead()
     //比對ID是否正確
     if(!IDList.contains(ID))
     {
-        qDebug() << "Robot Comunication Exception:" + str;
+        if(str.contains("error", Qt::CaseInsensitive))
+        {
+            msgBox.setText(str);
+            msgBox.show();
+        }else
+        {
+            qDebug() << "Robot Comunication Exception:" + str;
+        }
         return;
     }
 

@@ -150,6 +150,7 @@ void TaskManager::Tooling_TimeoutFail_Listener(const EventMessage &msg)
     fireEvent(command.task_event.workList_Waiting_Add, msg);
 }
 
+
 void TaskManager::Tooling_Idle_Listener(const EventMessage &msg)
 {
     int _targetID = msg.toolingNum;

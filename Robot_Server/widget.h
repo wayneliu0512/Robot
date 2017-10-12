@@ -96,6 +96,10 @@ private:
     //最激歪的兩個位置,y要先加上機箱寬度再送出
     void updateTable(const EventMessage& msg);
 
+    bool checkDeviceAllConnected();
+
+    void preScanBarcode();
+
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.
       EventManager *myEventManager = EventManager::Instance();

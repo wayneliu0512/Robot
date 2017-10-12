@@ -4,7 +4,9 @@
 Tooling::Tooling(int _toolingNum)
 {
     toolingNum = _toolingNum;
-    socket = new QTcpSocket;
+    //socket = new QTcpSocket;
+
+    state = Tooling::OFFLINE;
 
     communication = new Tooling_Communication(toolingNum);
 
@@ -26,7 +28,7 @@ Tooling::Tooling(int _toolingNum)
 Tooling::~Tooling()
 {
     delete communication;
-    delete socket;
+    //delete socket;
 }
 
 //設定socket

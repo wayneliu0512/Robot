@@ -134,7 +134,7 @@ void Widget::serverOn(int _port)
     if(!server->listen(QHostAddress::Any, _port))
     {
         msgBox.setText("Server could not start!");
-        msgBox.exec();
+        msgBox.show();
     }
     else
     {
@@ -179,6 +179,7 @@ void Widget::readyRead()
     disconnect(_socket, SIGNAL(readyRead()), this, SLOT(readyRead()));
 }
 
+//Update workList_Waiting
 void Widget::changeTable1()
 {
     ui->tableWidget_1->setRowCount(0);
@@ -199,6 +200,7 @@ void Widget::changeTable1()
     }
 }
 
+//Update workList_InAction
 void Widget::changeTable2()
 {
     ui->tableWidget_2->setRowCount(0);
@@ -219,6 +221,7 @@ void Widget::changeTable2()
     }
 }
 
+//Update workList_Done
 void Widget::changeTable3()
 {
     ui->tableWidget_3->setRowCount(0);
@@ -244,14 +247,10 @@ void Widget::on_Button_Start_clicked()
     if(systemOn)
         return;
 
-    //開啟 Scan Barcode 的 視窗
-    SNpreScanDialog *scanDialog = new SNpreScanDialog(setting);
-    scanDialog->exec();
+    if(!checkDeviceAllConnected())
+        return;
 
-    //更新新的offsetList給手臂
-    robot->setBase(scanDialog->newOffsetList);
-
-    delete scanDialog;
+    preScanBarcode();
 
     //警告人員淨空, 手臂將開始運行
     msgBox.setText("Please make sure keep personnel clearance and free of obstacle!\nRobot is about to operate!");
@@ -263,6 +262,46 @@ void Widget::on_Button_Start_clicked()
 
     //開始運行
     actionManager->start();
+}
+
+bool Widget::checkDeviceAllConnected()
+{
+    while(robot->state != Robot::ONLINE)
+    {
+        if(QMessageBox::critical(this, tr("Error"), tr("Robot connection error\nDo you want to reconnect?"),
+                                 QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
+        {
+            robot->connectToRobot();
+        }else{
+            return false;
+        }
+    }
+
+    if(ccd->state == CCD::OFFLINE)
+    {
+        QMessageBox::critical(this, tr("Error"), tr("CCD connection error"),QMessageBox::Ok);
+        return false;
+    }
+
+    if(tooling_1->state == Tooling::OFFLINE && tooling_2->state == Tooling::OFFLINE && tooling_3->state == Tooling::OFFLINE )
+    {
+        QMessageBox::critical(this, tr("Error"), tr("Tooling connection error"),QMessageBox::Ok);
+        return false;
+    }
+
+    return true;
+}
+
+void Widget::preScanBarcode()
+{
+    //開啟 Scan Barcode 的 視窗
+    SNpreScanDialog *scanDialog = new SNpreScanDialog(setting);
+    scanDialog->exec();
+
+    //更新新的offsetList給手臂
+    robot->setBase(scanDialog->newOffsetList);
+
+    delete scanDialog;
 }
 
 void Widget::on_Button_Stop_clicked()
@@ -309,11 +348,10 @@ void Widget::on_comboBox_activated(const QString &arg1)
     fireEvent(command.task_event.workList_Waiting_Add, msg);
 }
 
+//閃爍用的timer
 void Widget::flashingTimerReset()
 {
     if(flashCounter == 100)
         flashCounter = 0;
     flashCounter++;
 }
-
-

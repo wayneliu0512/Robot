@@ -78,6 +78,12 @@ void Robot_Communication::readyRead()
         qDebug() << "DONE Back << " + str;
         IDList.removeOne(ID);
         fireEvent(command.robot_communication_event.DONE, msg);
+    }else if(str.contains("ERROR"))
+    {
+        updateState(Robot_Communication::RECEIVE_ERROR);
+        qDebug() << "ERROR Back << " + str;
+        IDList.removeOne(ID);
+        fireEvent(command.robot_communication_event.ERROR, msg);
     }
 }
 
@@ -138,6 +144,22 @@ void Robot_Communication::sendSocketToRobot_Machine(QString ID, QString power, Q
 {
     QString str = "<ROBOT><MACHINE ID=\"" + ID + "\" POWER=\"" + power + "\">" + N + "</MACHINE></ROBOT>";
 
+    //將ID記錄到各暫存列表
+    IDList.append(ID);
+    ACK_ID = ID;
+    reSendText = str;
+
+    //發送資料
+    socket->write(str.toLatin1());
+    qDebug() << "SendToRobot: " + str;
+
+    //開始定時重送封包
+    timer->start();
+}
+
+void Robot_Communication::sendSocketToRobot_LightColor(QString ID, QString color)
+{
+    QString str = "<ROBOT><LIGHT ID=\"" + ID + "\" COLOR=\"" + color + "\">1</LIGHT></ROBOT>";
     //將ID記錄到各暫存列表
     IDList.append(ID);
     ACK_ID = ID;

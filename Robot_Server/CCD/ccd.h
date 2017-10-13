@@ -1,13 +1,13 @@
 #ifndef CCD_H
 #define CCD_H
-#include <QString>
 #include <QObject>
-#include <event/EventManager.h>
-#include <command.h>
-#include <event/eventmessage.h>
-#include <QLineEdit>
-#include <QTcpSocket>
-#include <CCD/ccd_communication.h>
+#include "Event/EventManager.h"
+#include "Event/eventmessage.h"
+#include "ccd_communication.h"
+
+class QString;
+class QTcpSocket;
+class Command;
 
 using namespace Mage;
 

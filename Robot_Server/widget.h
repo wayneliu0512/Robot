@@ -118,6 +118,7 @@ private slots:
 
     //用於閃爍的計時器
     void flashingTimerReset();
+    void on_Button_ReloadFinished_clicked();
 };
 
 #endif // WIDGET_H

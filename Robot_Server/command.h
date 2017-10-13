@@ -22,6 +22,8 @@ public:
         QString updateBase2 = "Robot_updateBase2_ActionType";
         QString updateBase3 = "Robot_updateBase3_ActionType";
         QString updateTray = "Robot_updateTray_ActionType";
+        QString trayLoadEmpty = "Robot_trayLoadEmpty_ActionType";
+        QString lightGreen = "Robot_lightGreen_ActionType";
     };
 
     //有關 Robot 的事件類型
@@ -48,6 +50,8 @@ public:
         QString ACK = "Robot_ACK_Event";
         //收到DONE回復時觸發(動作以外的任務處理完畢時)
         QString DONE = "Robot_DONE_Event";
+        //收到ERROR回復時觸發
+        QString ERROR = "Robot_ERROR_Event";
     };
 
     //機箱要執行的任務類型

@@ -2,10 +2,12 @@
 #define CCD_COMMUNICATION_H
 
 #include <QObject>
-#include <QTcpSocket>
-#include <QTimer>
 #include <Event/EventManager.h>
 #include <Event/eventmessage.h>
+
+class QTimer;
+class QTcpSocket;
+class Command;
 
 using namespace Mage;
 

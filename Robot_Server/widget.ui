@@ -386,6 +386,28 @@
      </property>
     </item>
    </widget>
+   <widget class="QPushButton" name="Button_ReloadFinished">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>40</y>
+      <width>151</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="text">
+     <string>ReLoad finished</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QWidget" name="gridLayoutWidget_3">
    <property name="geometry">

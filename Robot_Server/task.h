@@ -14,7 +14,7 @@ public:
 
     Task(Target _target, QString _command, Task *_nextTask);
 
-    ~Task(){}
+    ~Task();
 
     QString command;  //要執行的任務
     QString ID;  //任務ID(TimeStamp,13字元)

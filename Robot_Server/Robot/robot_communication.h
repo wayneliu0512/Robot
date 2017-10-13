@@ -17,7 +17,7 @@ class Robot_Communication : public QObject
     Q_OBJECT
 public:
 
-    enum State{ONLINE, OFFLINE, RECEIVE_DONE, RECEIVE_ACK};
+    enum State{ONLINE, OFFLINE, RECEIVE_DONE, RECEIVE_ACK, RECEIVE_ERROR};
 
     Robot_Communication(const QString& _IP, const int& _port);
 
@@ -37,6 +37,9 @@ public:
 
     //透過手臂控制機台Power格式
     void sendSocketToRobot_Machine(QString ID, QString power, QString N);
+
+    //透過手臂控制LightTower燈號
+    void sendSocketToRobot_LightColor(QString ID, QString color);
 
     void sendSocketToRobot_UpdateTray(QString ID);
 

@@ -11,7 +11,6 @@
 #include <command.h>
 #include <event/EventManager.h>
 
-
 using namespace Mage;
 
 class Robot: public QObject
@@ -28,6 +27,8 @@ public:
     static bool ActionIdle;
 
     static bool NonActionIdle;
+
+    static bool trayLoadEmptyMode;
 
     void connectToRobot();
 

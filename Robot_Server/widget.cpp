@@ -21,9 +21,9 @@ Widget::Widget(QWidget *parent) :
     setting = new StartUpSetting;
     createAllEvent();
 
-    flashTimer = new QTimer;
-    server = new QTcpServer;
-    socket = new QTcpSocket;
+    flashTimer = new QTimer(this);
+    server = new QTcpServer(this);
+    socket = new QTcpSocket(this);
 
     tooling_1 = new Tooling(1);
     tooling_GUI_1 = new Tooling_GUI(tooling_1, ui->listWidget_Box1, ui->pixmap_Box1, ui->lcdNumber_Box1, flashTimer);
@@ -57,15 +57,12 @@ Widget::Widget(QWidget *parent) :
     flashTimer->start();
     serverOn(setting->port);
 
+
 }
 
 Widget::~Widget()
 {
-    delete ui;
     delete setting;
-    delete flashTimer;
-    delete server;
-    delete socket;
     delete tooling_1;
     delete tooling_GUI_1;
     delete tooling_2;
@@ -78,6 +75,9 @@ Widget::~Widget()
     delete robot_GUI;
     delete taskManager;
     delete actionManager;
+    workList_Done.clear();
+    workList_InAction.clear();
+    workList_Waiting.clear();
 }
 
 void Widget::createAllEvent()
@@ -87,6 +87,7 @@ void Widget::createAllEvent()
     //Create Robot Event
     myEventManager->createEvent(command.robot_communication_event.ACK);
     myEventManager->createEvent(command.robot_communication_event.DONE);
+    myEventManager->createEvent(command.robot_communication_event.ERROR);
     myEventManager->createEvent(command.robot_event.Busy);
     myEventManager->createEvent(command.robot_event.ActionTask);
     myEventManager->createEvent(command.robot_event.NonActionTask);
@@ -256,6 +257,9 @@ void Widget::on_Button_Start_clicked()
     msgBox.setText("Please make sure keep personnel clearance and free of obstacle!\nRobot is about to operate!");
     msgBox.exec();
 
+    ui->Button_Start->setEnabled(false);
+    ui->Button_ReloadFinished->setEnabled(false);
+
     //觸發updateBase 任務派發
     EventMessage msg;
     fireEvent(command.robot_event.updateBase, msg);
@@ -266,7 +270,7 @@ void Widget::on_Button_Start_clicked()
 
 bool Widget::checkDeviceAllConnected()
 {
-    while(robot->state != Robot::ONLINE)
+    while(robot->state == Robot::OFFLINE)
     {
         if(QMessageBox::critical(this, tr("Error"), tr("Robot connection error\nDo you want to reconnect?"),
                                  QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
@@ -307,6 +311,26 @@ void Widget::preScanBarcode()
 void Widget::on_Button_Stop_clicked()
 {
     actionManager->stop();
+    ui->Button_Start->setEnabled(true);
+    ui->Button_ReloadFinished->setEnabled(true);
+}
+
+void Widget::on_Button_ReloadFinished_clicked()
+{   
+    Task *taskLightGreen = new Task(Task::Robot, command.robot_command.lightGreen);
+    taskLightGreen->targetID = 0;
+    QThread::msleep(100);
+
+    Widget::workList_Waiting.prepend(*taskLightGreen);
+
+    EventMessage msg;
+    fireEvent(command.task_event.workList_Waiting_Add, msg);
+
+    Robot::trayLoadEmptyMode = false;
+
+    ui->Button_ReloadFinished->setEnabled(false);
+
+    delete taskLightGreen;
 }
 
 void Widget::updateTable(const EventMessage& msg)

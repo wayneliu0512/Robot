@@ -39,8 +39,13 @@ void ActionManager::ActionManage()
 
     if(Robot::ActionIdle)
     {
-
-       dispatch_First_Task();
+        if(Robot::trayLoadEmptyMode)
+        {
+            dispatch_OnlyDischarge();
+        }else
+        {
+            dispatch_First_Task();
+        }
     }
 
 //    if(TaskManager::comboMode)
@@ -72,25 +77,13 @@ void ActionManager::dispatch_First_Task()
     EventMessage messageCarryTask(&task);
     QString commandStr = task.command;
 
-    if(commandStr.contains("ActionType"))
-    {
-        Robot::ActionIdle = false;
-    }else
-    {
-        Robot::NonActionIdle = false;
-    }
+    Robot::ActionIdle = false;
 
     //判斷派發任務對象
     switch(task.target)
     {
     case Task::Robot:
-        if(commandStr.contains("ActionType"))
-        {
-            fireEvent(command.robot_event.ActionTask, messageCarryTask);
-        }else
-        {
-            fireEvent(command.robot_event.NonActionTask, messageCarryTask);
-        }
+        fireEvent(command.robot_event.ActionTask, messageCarryTask);
         break;
     case Task::Tooling:
         if(commandStr.contains("On"))
@@ -114,6 +107,41 @@ void ActionManager::dispatch_First_Task()
     case Task::Center:
         //中控程式自己觸發的任務
         break;
+    }
+}
+
+void ActionManager::dispatch_OnlyDischarge()
+{
+    for(int i = 0; i < Widget::workList_Waiting.length(); i++)
+    {
+        Task task = Widget::workList_Waiting.at(i);
+        QString commandStr = task.command;
+
+        switch(task.target)
+        {
+        case Task::Robot:
+            if(commandStr == command.robot_command.toPASS || commandStr == command.robot_command.toFAIL ||
+                    commandStr.contains("update"))
+            {
+                Robot::ActionIdle = false;
+                EventMessage messageCarryTask(&task);
+                fireEvent(command.robot_event.ActionTask, messageCarryTask);
+                return;
+            }
+            break;
+        case Task::Tooling:
+            Robot::ActionIdle = false;
+            EventMessage messageCarryTask(&task);
+            if(commandStr.contains("On"))
+            {
+                fireEvent(command.tooling_event.powerOn, messageCarryTask);
+            }
+            else
+            {
+                fireEvent(command.tooling_event.powerOff, messageCarryTask);
+            }
+            return;
+        }
     }
 }
 

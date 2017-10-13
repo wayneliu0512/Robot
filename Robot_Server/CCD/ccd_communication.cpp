@@ -1,7 +1,12 @@
 #include "ccd_communication.h"
+#include "command.h"
 #include "CCD/ccd.h"
+
 #include "QJsonObject"
 #include "QJsonDocument"
+#include <QTcpSocket>
+#include <QTimer>
+
 
 CCD_Communication::CCD_Communication(QTcpSocket *_socket)
 {

@@ -20,6 +20,11 @@ Task::Task(Target _target, QString _command, Task *_nextTask = nullptr)
 
 }
 
+Task::~Task()
+{
+    //delete nextTask;
+}
+
 Task* Task::Next(Task *_nextTask)
 {
     nextTask = _nextTask;

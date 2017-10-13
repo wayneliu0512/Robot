@@ -1,5 +1,6 @@
 #include "eventmessage.h"
 
+
 EventMessage::EventMessage(QString _data, int _toolingNum, ACK_Type _ackType, Object_Type _objectType)
 {
     data = _data;

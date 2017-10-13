@@ -1,4 +1,5 @@
 #include "ccd_gui.h"
+#include <QLabel>
 
 CCD_GUI::CCD_GUI(QObject *parent) : QObject(parent)
 {

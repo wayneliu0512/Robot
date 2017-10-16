@@ -13,6 +13,7 @@ Robot::Robot(QString _IP, int _port)
     myEventManager->subscribe(command.robot_communication_event.DONE, this, &Robot::DONE_Event_Listener);
     myEventManager->subscribe(command.robot_event.ActionTask, this, &Robot::Excute_ActionTask);
     myEventManager->subscribe(command.robot_event.NonActionTask, this, &Robot::Excute_NonActionTask);
+    myEventManager->subscribe(command.robot_event.trayLoadEmptyStop, this, &Robot::trayLoadEmptyStop);
 
     IP = _IP;
     port = _port;
@@ -133,6 +134,11 @@ void Robot::DONE_Event_Listener(const EventMessage& msg)
 void Robot::setBase(const QVector<Base> &_baseList)
 {
     baseList = _baseList;
+}
+
+void Robot::trayLoadEmptyStop(const EventMessage &msg)
+{
+    updateState(Robot::STOP);
 }
 
 void Robot::updateConnectionState(Robot_Communication::State _state)

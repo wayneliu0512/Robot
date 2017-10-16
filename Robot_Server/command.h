@@ -23,6 +23,7 @@ public:
         QString updateBase3 = "Robot_updateBase3_ActionType";
         QString updateTray = "Robot_updateTray_ActionType";
         QString trayLoadEmpty = "Robot_trayLoadEmpty_ActionType";
+        //LightTower 亮綠燈
         QString lightGreen = "Robot_lightGreen_ActionType";
     };
 
@@ -41,6 +42,8 @@ public:
         QString NonActionTask = "Robot_NonActionTask_Event";
         //叫手臂更新Base
         QString updateBase= "Robot_UpdateBase_Event";
+
+        QString trayLoadEmptyStop = "Robot_trayLoadEmptyStop_Event";
     };
 
     //有關Robot 通訊的事件類型

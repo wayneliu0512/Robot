@@ -272,8 +272,10 @@ void TaskManager::Task_workList_DONE_Add(const EventMessage &msg)
 
     if(doneTask.command == command.robot_command.trayLoadEmpty)
     {
-        Robot::trayLoadEmptyMode = true;
-        qDebug() << "trayLoadEmptyMode = true";
+        Widget::systemOn = false;
+        fireEvent(command.robot_event.trayLoadEmptyStop, msg);
+//        Robot::trayLoadEmptyMode = true;
+//        qDebug() << "trayLoadEmptyMode = true";
         delete doneTask.nextTask;
     }
     else if(doneTask.nextTask != nullptr)

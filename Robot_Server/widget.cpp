@@ -17,6 +17,7 @@ Widget::Widget(QWidget *parent) :
 {   
     ui->setupUi(this);
 //    this->setFixedSize(671, 599);
+    ui->Button_Stop->setVisible(false);
 
     setting = new StartUpSetting;
     createAllEvent();
@@ -92,6 +93,7 @@ void Widget::createAllEvent()
     myEventManager->createEvent(command.robot_event.ActionTask);
     myEventManager->createEvent(command.robot_event.NonActionTask);
     myEventManager->createEvent(command.robot_event.updateBase);
+    myEventManager->createEvent(command.robot_event.trayLoadEmptyStop);
 
     //Create Tooling Event
     myEventManager->createEvent(command.tooling_communication_event.NoACK);
@@ -128,6 +130,7 @@ void Widget::createAllEvent()
     myEventManager->subscribe(command.task_event.workList_InAction_Removed, this, &Widget::updateTable);
     myEventManager->subscribe(command.task_event.workList_Waiting_Add, this, &Widget::updateTable);
     myEventManager->subscribe(command.task_event.workList_Waiting_Removed, this, &Widget::updateTable);
+    myEventManager->subscribe(command.robot_event.trayLoadEmptyStop, this, &Widget::trayLoadEmptyStop);
 }
 
 void Widget::serverOn(int _port)
@@ -327,10 +330,32 @@ void Widget::on_Button_ReloadFinished_clicked()
     fireEvent(command.task_event.workList_Waiting_Add, msg);
 
     Robot::trayLoadEmptyMode = false;
+    Widget::systemOn = true;
 
     ui->Button_ReloadFinished->setEnabled(false);
+    ui->Button_CompleteRest->setEnabled(false);
+    ui->Button_Stop->setEnabled(true);
 
     delete taskLightGreen;
+}
+
+void Widget::on_Button_CompleteRest_clicked()
+{
+    Task *taskLightGreen = new Task(Task::Robot, command.robot_command.lightGreen);
+    taskLightGreen->targetID = 0;
+    QThread::msleep(100);
+
+    Widget::workList_Waiting.prepend(*taskLightGreen);
+
+    EventMessage msg;
+    fireEvent(command.task_event.workList_Waiting_Add, msg);
+
+    Robot::trayLoadEmptyMode = true;
+    Widget::systemOn = true;
+
+    ui->Button_ReloadFinished->setEnabled(false);
+    ui->Button_CompleteRest->setEnabled(false);
+    ui->Button_Stop->setEnabled(true);
 }
 
 void Widget::updateTable(const EventMessage& msg)
@@ -340,37 +365,45 @@ void Widget::updateTable(const EventMessage& msg)
     changeTable3();
 }
 
-void Widget::on_comboBox_activated(const QString &arg1)
+void Widget::trayLoadEmptyStop(const EventMessage &msg)
 {
-    if(arg1.contains("SN"))
-    {
-        Task task(Task::Robot, command.robot_command.toScanSN);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1.contains("MAC"))
-    {
-        Task task(Task::Robot, command.robot_command.toScanMAC);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1.contains("Tooling"))
-    {
-        Task task(Task::Robot, command.robot_command.toTooling);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1.contains("PASS"))
-    {
-        Task task(Task::Robot, command.robot_command.toPASS);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1. contains("FAIL"))
-    {
-        Task task(Task::Robot, command.robot_command.toFAIL);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }
-    EventMessage msg;
-    fireEvent(command.task_event.workList_Waiting_Add, msg);
+    ui->Button_Start->setEnabled(false);
+    ui->Button_Stop->setEnabled(false);
+    ui->Button_ReloadFinished->setEnabled(true);
+    ui->Button_CompleteRest->setEnabled(true);
 }
+
+//void Widget::on_comboBox_activated(const QString &arg1)
+//{
+//    if(arg1.contains("SN"))
+//    {
+//        Task task(Task::Robot, command.robot_command.toScanSN);
+//        task.targetID = 2;
+//        Widget::workList_Waiting.append(task);
+//    }else if(arg1.contains("MAC"))
+//    {
+//        Task task(Task::Robot, command.robot_command.toScanMAC);
+//        task.targetID = 2;
+//        Widget::workList_Waiting.append(task);
+//    }else if(arg1.contains("Tooling"))
+//    {
+//        Task task(Task::Robot, command.robot_command.toTooling);
+//        task.targetID = 2;
+//        Widget::workList_Waiting.append(task);
+//    }else if(arg1.contains("PASS"))
+//    {
+//        Task task(Task::Robot, command.robot_command.toPASS);
+//        task.targetID = 2;
+//        Widget::workList_Waiting.append(task);
+//    }else if(arg1. contains("FAIL"))
+//    {
+//        Task task(Task::Robot, command.robot_command.toFAIL);
+//        task.targetID = 2;
+//        Widget::workList_Waiting.append(task);
+//    }
+//    EventMessage msg;
+//    fireEvent(command.task_event.workList_Waiting_Add, msg);
+//}
 
 //閃爍用的timer
 void Widget::flashingTimerReset()
@@ -379,3 +412,5 @@ void Widget::flashingTimerReset()
         flashCounter = 0;
     flashCounter++;
 }
+
+

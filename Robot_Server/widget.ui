@@ -351,48 +351,13 @@
      </property>
     </column>
    </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>91</x>
-      <y>30</y>
-      <width>141</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>toScanSN</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toScanMAC</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toTooling</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toPASS</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toFAIL</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QPushButton" name="Button_ReloadFinished">
     <property name="enabled">
      <bool>false</bool>
     </property>
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>270</x>
       <y>40</y>
       <width>151</width>
       <height>28</height>
@@ -406,6 +371,28 @@
     </property>
     <property name="text">
      <string>ReLoad finished</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Button_CompleteRest">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>40</y>
+      <width>201</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <stylestrategy>PreferAntialias</stylestrategy>
+     </font>
+    </property>
+    <property name="text">
+     <string>Complete the remaining test</string>
     </property>
    </widget>
   </widget>
@@ -582,7 +569,7 @@
    </property>
    <property name="geometry">
     <rect>
-     <x>150</x>
+     <x>30</x>
      <y>570</y>
      <width>151</width>
      <height>28</height>

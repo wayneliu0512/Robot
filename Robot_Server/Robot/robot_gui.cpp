@@ -32,6 +32,9 @@ void Robot_GUI::updateGUI(Robot::State _state)
     case Robot::IN_ACTION:
         setLight(YELLOW, true);
         break;
+    case Robot::STOP:
+        setLight(RED, false);
+        break;
     }
 }
 

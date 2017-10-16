@@ -18,7 +18,7 @@ class Robot: public QObject
     Q_OBJECT
 public:
 
-    enum State{ ONLINE, OFFLINE, IN_ACTION};
+    enum State{ ONLINE, OFFLINE, IN_ACTION, STOP};
 
     Robot(QString _IP, int _port);
 
@@ -64,6 +64,8 @@ private:
     void Excute_ActionTask(const EventMessage& msg);
     //監聽執行非動作型任務
     void Excute_NonActionTask(const EventMessage& msg);
+
+    void trayLoadEmptyStop(const EventMessage& msg);
 
     //儲存Base座標系的列表
     QVector<Base> baseList;

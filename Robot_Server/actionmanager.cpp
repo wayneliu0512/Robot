@@ -121,7 +121,7 @@ void ActionManager::dispatch_OnlyDischarge()
         {
         case Task::Robot:
             if(commandStr == command.robot_command.toPASS || commandStr == command.robot_command.toFAIL ||
-                    commandStr.contains("update"))
+                    commandStr == command.robot_command.lightGreen || commandStr.contains("update"))
             {
                 Robot::ActionIdle = false;
                 EventMessage messageCarryTask(&task);

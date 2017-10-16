@@ -96,6 +96,8 @@ private:
     //最激歪的兩個位置,y要先加上機箱寬度再送出
     void updateTable(const EventMessage& msg);
 
+    void trayLoadEmptyStop(const EventMessage& msg);
+
     bool checkDeviceAllConnected();
 
     void preScanBarcode();
@@ -114,11 +116,12 @@ private slots:
     //GUI 觸發
     void on_Button_Start_clicked();
     void on_Button_Stop_clicked();   
-    void on_comboBox_activated(const QString &arg1);
+//    void on_comboBox_activated(const QString &arg1);
 
     //用於閃爍的計時器
     void flashingTimerReset();
     void on_Button_ReloadFinished_clicked();
+    void on_Button_CompleteRest_clicked();
 };
 
 #endif // WIDGET_H

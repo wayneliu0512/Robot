@@ -44,7 +44,7 @@ Widget::Widget(QWidget *parent) :
 //    robot->setBase(setting->offsetList);
 
     taskManager = new TaskManager;
-    actionManager = new ActionManager;
+    actionManager = new ActionManager(robot, tooling_1, tooling_2, tooling_3);
 
     msgBox.setStandardButtons(QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);

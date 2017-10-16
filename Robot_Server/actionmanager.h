@@ -9,11 +9,14 @@
 
 using namespace Mage;
 
+class Tooling;
+class Robot;
+
 class ActionManager : public QObject
 {
     Q_OBJECT
 public:
-    ActionManager();
+    ActionManager(Robot *_robot, Tooling *_t1, Tooling *_t2, Tooling *_t3);
 
     ~ActionManager();
 
@@ -26,6 +29,10 @@ private:
     QTimer *timer;
 
     Command command;
+
+    Robot *robot;
+
+    Tooling *tooling1, *tooling2, *tooling3;
 
     void dispatch_First_Task();
 

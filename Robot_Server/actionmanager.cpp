@@ -2,8 +2,12 @@
 #include <Robot/robot.h>
 #include <widget.h>
 #include <snprescandialog.h>
+#include "Tooling/tooling.h"
+#include "Robot/robot.h"
+#include <QMessageBox>
 
-ActionManager::ActionManager()
+ActionManager::ActionManager(Robot *_robot, Tooling *_t1, Tooling *_t2, Tooling *_t3):
+    robot(_robot), tooling1(_t1), tooling2(_t2), tooling3(_t3)
 {
     timer = new QTimer;
     timer->setInterval(1000);
@@ -32,7 +36,7 @@ void ActionManager::stop()
 
 void ActionManager::ActionManage()
 {
-    if(!Widget::systemOn || Widget::workList_Waiting.empty())
+    if(!Widget::systemOn)
     {
         return;
     }
@@ -41,6 +45,12 @@ void ActionManager::ActionManage()
     {
         if(Robot::trayLoadEmptyMode)
         {
+//            if(tooling1->state == Tooling::ONLINE && tooling2->state == Tooling::ONLINE && tooling3->state == Tooling::ONLINE)
+//            {
+//                Widget::systemOn = false;
+//                QMessageBox::information(nullptr, tr("Information"), tr("DisCharge complete."));
+//                return;
+//            }
             dispatch_OnlyDischarge();
         }else
         {

@@ -9,14 +9,11 @@
 
 using namespace Mage;
 
-class Tooling;
-class Robot;
-
 class ActionManager : public QObject
 {
     Q_OBJECT
 public:
-    ActionManager(Robot *_robot, Tooling *_t1, Tooling *_t2, Tooling *_t3);
+    ActionManager();
 
     ~ActionManager();
 
@@ -30,17 +27,11 @@ private:
 
     Command command;
 
-    Robot *robot;
-
-    Tooling *tooling1, *tooling2, *tooling3;
-
     void dispatch_First_Task();
 
     void dispatch_First_Action_Task();
 
     void dispatch_First_NonAction_Task();
-
-    void dispatch_OnlyDischarge();
 
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.

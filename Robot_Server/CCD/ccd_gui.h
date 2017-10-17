@@ -3,9 +3,7 @@
 
 #include <QObject>
 #include <CCD/ccd.h>
-
-class QLabel;
-
+#include <QLabel>
 class CCD_GUI : public QObject
 {
     Q_OBJECT

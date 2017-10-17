@@ -1,40 +1,28 @@
-Time    : 16:45:04
+Time    : 13:42:49
 Command : Robot_updateBase1_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 16:45:06
+Time    : 13:42:50
 Command : Robot_updateBase2_ActionType
 TargetID: 2
 -------------------------------------------------------
-Time    : 16:45:08
+Time    : 13:42:51
 Command : Robot_updateBase3_ActionType
 TargetID: 3
 -------------------------------------------------------
-Time    : 16:47:01
+Time    : 13:44:00
 Command : Robot_toScan_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 16:47:03
+Time    : 13:44:02
 Command : CCD_StartScan_SN_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 16:47:06
+Time    : 13:44:05
 Command : Robot_toScanMAC_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 16:47:09
+Time    : 13:44:46
 Command : CCD_StartScan_MAC_ActionType
 TargetID: 1
--------------------------------------------------------
-Time    : 16:47:40
-Command : Robot_toTooling_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:47:42
-Command : Tooling_PowerOn_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:48:54
-Command : Robot_updateTray_ActionType
-TargetID: 0
 -------------------------------------------------------

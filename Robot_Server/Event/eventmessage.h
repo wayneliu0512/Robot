@@ -1,8 +1,7 @@
 #ifndef EVENTMESSAGE_H
 #define EVENTMESSAGE_H
-
-#include <task.h>
 #include <QString>
+#include <task.h>
 
 class EventMessage
 {

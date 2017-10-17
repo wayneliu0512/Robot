@@ -2,7 +2,6 @@
 #include <QThread>
 bool Robot::ActionIdle = true;
 bool Robot::NonActionIdle = true;
-bool Robot::trayLoadEmptyMode = false;
 
 Robot::Robot(QString _IP, int _port)
 {
@@ -13,11 +12,9 @@ Robot::Robot(QString _IP, int _port)
     myEventManager->subscribe(command.robot_communication_event.DONE, this, &Robot::DONE_Event_Listener);
     myEventManager->subscribe(command.robot_event.ActionTask, this, &Robot::Excute_ActionTask);
     myEventManager->subscribe(command.robot_event.NonActionTask, this, &Robot::Excute_NonActionTask);
-    myEventManager->subscribe(command.robot_event.trayLoadEmptyStop, this, &Robot::trayLoadEmptyStop);
 
     IP = _IP;
     port = _port;
-    state = Robot::OFFLINE;
 
     msgBox.setStandardButtons(QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
@@ -25,9 +22,9 @@ Robot::Robot(QString _IP, int _port)
     msgBox.setWindowTitle("Warning");
 
     communication = new Robot_Communication(IP, port);
+
     connect(communication, SIGNAL(update(Robot_Communication::State)),
             this, SLOT(updateConnectionState(Robot_Communication::State)));
-
 }
 
 Robot::~Robot()
@@ -83,9 +80,6 @@ void Robot::Excute_ActionTask(const EventMessage &msg)
     }else if(task.command == command.tooling_command.powerOff)
     {
         communication->sendSocketToRobot_Machine(task.ID, "0", num);
-    }else if(task.command == command.robot_command.lightGreen)
-    {
-        communication->sendSocketToRobot_LightColor(task.ID, "1");
     }else if(task.command == command.robot_command.updateBase1 || task.command == command.robot_command.updateBase2
              ||task.command == command.robot_command.updateBase3)
     {
@@ -136,11 +130,6 @@ void Robot::setBase(const QVector<Base> &_baseList)
     baseList = _baseList;
 }
 
-void Robot::trayLoadEmptyStop(const EventMessage &msg)
-{
-    updateState(Robot::STOP);
-}
-
 void Robot::updateConnectionState(Robot_Communication::State _state)
 {
     switch(_state)
@@ -148,7 +137,6 @@ void Robot::updateConnectionState(Robot_Communication::State _state)
 
     case Robot_Communication::ONLINE:
     case Robot_Communication::RECEIVE_DONE:
-    case Robot_Communication::RECEIVE_ERROR:
         updateState(Robot::ONLINE);
         break;
 

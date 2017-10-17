@@ -17,14 +17,13 @@ Widget::Widget(QWidget *parent) :
 {   
     ui->setupUi(this);
 //    this->setFixedSize(671, 599);
-    ui->Button_Stop->setVisible(false);
 
     setting = new StartUpSetting;
     createAllEvent();
 
-    flashTimer = new QTimer(this);
-    server = new QTcpServer(this);
-    socket = new QTcpSocket(this);
+    flashTimer = new QTimer;
+    server = new QTcpServer;
+    socket = new QTcpSocket;
 
     tooling_1 = new Tooling(1);
     tooling_GUI_1 = new Tooling_GUI(tooling_1, ui->listWidget_Box1, ui->pixmap_Box1, ui->lcdNumber_Box1, flashTimer);
@@ -44,7 +43,7 @@ Widget::Widget(QWidget *parent) :
 //    robot->setBase(setting->offsetList);
 
     taskManager = new TaskManager;
-    actionManager = new ActionManager(robot, tooling_1, tooling_2, tooling_3);
+    actionManager = new ActionManager;
 
     msgBox.setStandardButtons(QMessageBox::Cancel);
     msgBox.setDefaultButton(QMessageBox::Cancel);
@@ -57,7 +56,6 @@ Widget::Widget(QWidget *parent) :
     flashTimer->setInterval(500);
     flashTimer->start();
     serverOn(setting->port);
-
 
 }
 
@@ -88,12 +86,10 @@ void Widget::createAllEvent()
     //Create Robot Event
     myEventManager->createEvent(command.robot_communication_event.ACK);
     myEventManager->createEvent(command.robot_communication_event.DONE);
-    myEventManager->createEvent(command.robot_communication_event.ERROR);
     myEventManager->createEvent(command.robot_event.Busy);
     myEventManager->createEvent(command.robot_event.ActionTask);
     myEventManager->createEvent(command.robot_event.NonActionTask);
     myEventManager->createEvent(command.robot_event.updateBase);
-    myEventManager->createEvent(command.robot_event.trayLoadEmptyStop);
 
     //Create Tooling Event
     myEventManager->createEvent(command.tooling_communication_event.NoACK);
@@ -130,7 +126,6 @@ void Widget::createAllEvent()
     myEventManager->subscribe(command.task_event.workList_InAction_Removed, this, &Widget::updateTable);
     myEventManager->subscribe(command.task_event.workList_Waiting_Add, this, &Widget::updateTable);
     myEventManager->subscribe(command.task_event.workList_Waiting_Removed, this, &Widget::updateTable);
-    myEventManager->subscribe(command.robot_event.trayLoadEmptyStop, this, &Widget::trayLoadEmptyStop);
 }
 
 void Widget::serverOn(int _port)
@@ -260,9 +255,6 @@ void Widget::on_Button_Start_clicked()
     msgBox.setText("Please make sure keep personnel clearance and free of obstacle!\nRobot is about to operate!");
     msgBox.exec();
 
-    ui->Button_Start->setEnabled(false);
-    ui->Button_ReloadFinished->setEnabled(false);
-
     //觸發updateBase 任務派發
     EventMessage msg;
     fireEvent(command.robot_event.updateBase, msg);
@@ -273,7 +265,7 @@ void Widget::on_Button_Start_clicked()
 
 bool Widget::checkDeviceAllConnected()
 {
-    while(robot->state == Robot::OFFLINE)
+    while(robot->state != Robot::ONLINE)
     {
         if(QMessageBox::critical(this, tr("Error"), tr("Robot connection error\nDo you want to reconnect?"),
                                  QMessageBox::Ok,QMessageBox::Cancel) == QMessageBox::Ok)
@@ -314,48 +306,6 @@ void Widget::preScanBarcode()
 void Widget::on_Button_Stop_clicked()
 {
     actionManager->stop();
-    ui->Button_Start->setEnabled(true);
-    ui->Button_ReloadFinished->setEnabled(true);
-}
-
-void Widget::on_Button_ReloadFinished_clicked()
-{   
-    Task *taskLightGreen = new Task(Task::Robot, command.robot_command.lightGreen);
-    taskLightGreen->targetID = 0;
-    QThread::msleep(100);
-
-    Widget::workList_Waiting.prepend(*taskLightGreen);
-
-    EventMessage msg;
-    fireEvent(command.task_event.workList_Waiting_Add, msg);
-
-    Robot::trayLoadEmptyMode = false;
-    Widget::systemOn = true;
-
-    ui->Button_ReloadFinished->setEnabled(false);
-    ui->Button_CompleteRest->setEnabled(false);
-    ui->Button_Stop->setEnabled(true);
-
-    delete taskLightGreen;
-}
-
-void Widget::on_Button_CompleteRest_clicked()
-{
-    Task *taskLightGreen = new Task(Task::Robot, command.robot_command.lightGreen);
-    taskLightGreen->targetID = 0;
-    QThread::msleep(100);
-
-    Widget::workList_Waiting.prepend(*taskLightGreen);
-
-    EventMessage msg;
-    fireEvent(command.task_event.workList_Waiting_Add, msg);
-
-    Robot::trayLoadEmptyMode = true;
-    Widget::systemOn = true;
-
-    ui->Button_ReloadFinished->setEnabled(false);
-    ui->Button_CompleteRest->setEnabled(false);
-    ui->Button_Stop->setEnabled(true);
 }
 
 void Widget::updateTable(const EventMessage& msg)
@@ -365,45 +315,37 @@ void Widget::updateTable(const EventMessage& msg)
     changeTable3();
 }
 
-void Widget::trayLoadEmptyStop(const EventMessage &msg)
+void Widget::on_comboBox_activated(const QString &arg1)
 {
-    ui->Button_Start->setEnabled(false);
-    ui->Button_Stop->setEnabled(false);
-    ui->Button_ReloadFinished->setEnabled(true);
-    ui->Button_CompleteRest->setEnabled(true);
+    if(arg1.contains("SN"))
+    {
+        Task task(Task::Robot, command.robot_command.toScanSN);
+        task.targetID = 2;
+        Widget::workList_Waiting.append(task);
+    }else if(arg1.contains("MAC"))
+    {
+        Task task(Task::Robot, command.robot_command.toScanMAC);
+        task.targetID = 2;
+        Widget::workList_Waiting.append(task);
+    }else if(arg1.contains("Tooling"))
+    {
+        Task task(Task::Robot, command.robot_command.toTooling);
+        task.targetID = 2;
+        Widget::workList_Waiting.append(task);
+    }else if(arg1.contains("PASS"))
+    {
+        Task task(Task::Robot, command.robot_command.toPASS);
+        task.targetID = 2;
+        Widget::workList_Waiting.append(task);
+    }else if(arg1. contains("FAIL"))
+    {
+        Task task(Task::Robot, command.robot_command.toFAIL);
+        task.targetID = 2;
+        Widget::workList_Waiting.append(task);
+    }
+    EventMessage msg;
+    fireEvent(command.task_event.workList_Waiting_Add, msg);
 }
-
-//void Widget::on_comboBox_activated(const QString &arg1)
-//{
-//    if(arg1.contains("SN"))
-//    {
-//        Task task(Task::Robot, command.robot_command.toScanSN);
-//        task.targetID = 2;
-//        Widget::workList_Waiting.append(task);
-//    }else if(arg1.contains("MAC"))
-//    {
-//        Task task(Task::Robot, command.robot_command.toScanMAC);
-//        task.targetID = 2;
-//        Widget::workList_Waiting.append(task);
-//    }else if(arg1.contains("Tooling"))
-//    {
-//        Task task(Task::Robot, command.robot_command.toTooling);
-//        task.targetID = 2;
-//        Widget::workList_Waiting.append(task);
-//    }else if(arg1.contains("PASS"))
-//    {
-//        Task task(Task::Robot, command.robot_command.toPASS);
-//        task.targetID = 2;
-//        Widget::workList_Waiting.append(task);
-//    }else if(arg1. contains("FAIL"))
-//    {
-//        Task task(Task::Robot, command.robot_command.toFAIL);
-//        task.targetID = 2;
-//        Widget::workList_Waiting.append(task);
-//    }
-//    EventMessage msg;
-//    fireEvent(command.task_event.workList_Waiting_Add, msg);
-//}
 
 //閃爍用的timer
 void Widget::flashingTimerReset()
@@ -412,5 +354,3 @@ void Widget::flashingTimerReset()
         flashCounter = 0;
     flashCounter++;
 }
-
-

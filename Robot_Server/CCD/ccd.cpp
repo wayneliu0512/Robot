@@ -2,9 +2,6 @@
 #include "QTimer"
 #include "QDebug"
 #include <QMessageBox>
-#include <QLineEdit>
-#include <QTcpSocket>
-#include "command.h"
 
 QString CCD::SN = "";
 QString CCD::MAC = "";

@@ -11,7 +11,6 @@ TaskManager::TaskManager()
     EventManager *myEventManager = EventManager::Instance();
     myEventManager->subscribe(command.robot_communication_event.DONE, this, &TaskManager::DONE_Listener);
     myEventManager->subscribe(command.robot_communication_event.ACK, this, &TaskManager::ACK_Listener);
-    myEventManager->subscribe(command.robot_communication_event.ERROR, this, &TaskManager::ERROR_Listener);
     myEventManager->subscribe(command.robot_event.updateBase, this, &TaskManager::Robot_UpdateBase_Listener);
 
     myEventManager->subscribe(command.tooling_event.testPASS, this, &TaskManager::Tooling_TestPass_Listener);
@@ -65,26 +64,8 @@ void TaskManager::DONE_Listener(const EventMessage& msg)
 
 void TaskManager::ERROR_Listener(const EventMessage& msg)
 {
-    for(int i = 0; i < Widget::workList_InAction.length(); i++)
-    {
-        if(msg.ID == Widget::workList_InAction.at(i).ID)
-        {
-            Task task = Widget::workList_InAction.takeAt(i);
-            task.command = command.robot_command.trayLoadEmpty;
-            Widget::workList_Done.append(task);
 
-            if(task.targetID != 0)
-            {
-                EventMessage newMsg(task.command, task.targetID, EventMessage::NOACK, EventMessage::FromRobot);
-                fireEvent(command.tooling_event.Idle, newMsg);
-            }
-
-            fireEvent(command.task_event.workList_InAction_Removed, msg);
-            fireEvent(command.task_event.workList_DONE_Add, msg);
-        }
-    }
 }
-
 
 void TaskManager::Tooling_Boot_Listener(const EventMessage &msg)
 {
@@ -270,23 +251,25 @@ void TaskManager::Task_workList_DONE_Add(const EventMessage &msg)
 
     fireEvent(command.tooling_event.takeOut, msg);
 
-    if(doneTask.command == command.robot_command.trayLoadEmpty)
+    if(doneTask.nextTask != nullptr)
     {
-        Widget::systemOn = false;
-        fireEvent(command.robot_event.trayLoadEmptyStop, msg);
-//        Robot::trayLoadEmptyMode = true;
-//        qDebug() << "trayLoadEmptyMode = true";
-        delete doneTask.nextTask;
-    }
-    else if(doneTask.nextTask != nullptr)
-    {
+        comboMode = true;
         Task nextTask = *doneTask.nextTask;
         Widget::workList_Waiting.prepend(nextTask);
         delete doneTask.nextTask;
         fireEvent(command.task_event.workList_Waiting_Add, msg);
+    }else
+    {
+        comboMode = false;
     }
 
-    Robot::ActionIdle = true;
+    if(doneTask.command.contains("ActionType"))
+    {
+        Robot::ActionIdle = true;
+    }else
+    {
+        Robot::NonActionIdle = true;
+    }
 }
 
 void TaskManager::clearDoneList()

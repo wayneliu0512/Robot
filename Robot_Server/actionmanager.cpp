@@ -2,12 +2,8 @@
 #include <Robot/robot.h>
 #include <widget.h>
 #include <snprescandialog.h>
-#include "Tooling/tooling.h"
-#include "Robot/robot.h"
-#include <QMessageBox>
 
-ActionManager::ActionManager(Robot *_robot, Tooling *_t1, Tooling *_t2, Tooling *_t3):
-    robot(_robot), tooling1(_t1), tooling2(_t2), tooling3(_t3)
+ActionManager::ActionManager()
 {
     timer = new QTimer;
     timer->setInterval(1000);
@@ -36,26 +32,15 @@ void ActionManager::stop()
 
 void ActionManager::ActionManage()
 {
-    if(!Widget::systemOn)
+    if(!Widget::systemOn || Widget::workList_Waiting.empty())
     {
         return;
     }
 
     if(Robot::ActionIdle)
     {
-        if(Robot::trayLoadEmptyMode)
-        {
-//            if(tooling1->state == Tooling::ONLINE && tooling2->state == Tooling::ONLINE && tooling3->state == Tooling::ONLINE)
-//            {
-//                Widget::systemOn = false;
-//                QMessageBox::information(nullptr, tr("Information"), tr("DisCharge complete."));
-//                return;
-//            }
-            dispatch_OnlyDischarge();
-        }else
-        {
-            dispatch_First_Task();
-        }
+
+       dispatch_First_Task();
     }
 
 //    if(TaskManager::comboMode)
@@ -87,13 +72,25 @@ void ActionManager::dispatch_First_Task()
     EventMessage messageCarryTask(&task);
     QString commandStr = task.command;
 
-    Robot::ActionIdle = false;
+    if(commandStr.contains("ActionType"))
+    {
+        Robot::ActionIdle = false;
+    }else
+    {
+        Robot::NonActionIdle = false;
+    }
 
     //判斷派發任務對象
     switch(task.target)
     {
     case Task::Robot:
-        fireEvent(command.robot_event.ActionTask, messageCarryTask);
+        if(commandStr.contains("ActionType"))
+        {
+            fireEvent(command.robot_event.ActionTask, messageCarryTask);
+        }else
+        {
+            fireEvent(command.robot_event.NonActionTask, messageCarryTask);
+        }
         break;
     case Task::Tooling:
         if(commandStr.contains("On"))
@@ -117,41 +114,6 @@ void ActionManager::dispatch_First_Task()
     case Task::Center:
         //中控程式自己觸發的任務
         break;
-    }
-}
-
-void ActionManager::dispatch_OnlyDischarge()
-{
-    for(int i = 0; i < Widget::workList_Waiting.length(); i++)
-    {
-        Task task = Widget::workList_Waiting.at(i);
-        QString commandStr = task.command;
-
-        switch(task.target)
-        {
-        case Task::Robot:
-            if(commandStr == command.robot_command.toPASS || commandStr == command.robot_command.toFAIL ||
-                    commandStr == command.robot_command.lightGreen || commandStr.contains("update"))
-            {
-                Robot::ActionIdle = false;
-                EventMessage messageCarryTask(&task);
-                fireEvent(command.robot_event.ActionTask, messageCarryTask);
-                return;
-            }
-            break;
-        case Task::Tooling:
-            Robot::ActionIdle = false;
-            EventMessage messageCarryTask(&task);
-            if(commandStr.contains("On"))
-            {
-                fireEvent(command.tooling_event.powerOn, messageCarryTask);
-            }
-            else
-            {
-                fireEvent(command.tooling_event.powerOff, messageCarryTask);
-            }
-            return;
-        }
     }
 }
 

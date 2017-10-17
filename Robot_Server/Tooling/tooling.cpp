@@ -58,33 +58,15 @@ void Tooling::No_ACK_Event_Listener(const EventMessage &msg)
         QString str = msg.data;
         if(str == "test pass")
         {
-            if(state == Tooling::ONLINE)
-            {
-                msgBox.setText("Tooling idle conflict");
-                msgBox.show();
-                return;
-            }
             fireEvent(command.tooling_event.testPASS, msg);
         }else if(str == "test fail")
         {
-            if(state == Tooling::ONLINE)
-            {
-                msgBox.setText("Tooling idle conflict");
-                msgBox.show();
-                return;
-            }
             fireEvent(command.tooling_event.testFAIL, msg);
         }else if(str == "boot")
         {
             fireEvent(command.tooling_event.boot, msg);
         }else if(str == "timeout fail")
         {
-            if(state == Tooling::ONLINE)
-            {
-                msgBox.setText("Tooling idle conflict");
-                msgBox.show();
-                return;
-            }
             fireEvent(command.tooling_event.timeoutFail, msg);
         }else if(str.contains("ERROR"))
         {

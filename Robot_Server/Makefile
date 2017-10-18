@@ -490,7 +490,7 @@ all: release-all debug-all  FORCE
 clean: release-clean debug-clean  FORCE
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) C:\Users\wayneliu\Desktop\Robot\Robot_Server\robot_server_plugin_import.cpp
+	-$(DEL_FILE) Z:\Documents\Qt\Robot\Robot_Server\robot_server_plugin_import.cpp
 
 release-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)

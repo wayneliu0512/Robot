@@ -62,7 +62,7 @@ SOURCES       = main.cpp \
 		CCD\ccd_communication.cpp \
 		CCD\ccd_gui.cpp \
 		snprescandialog.cpp \
-		startupsetting.cpp C:/Users/wayneliu/Desktop/Robot/Robot_Server/robot_server_plugin_import.cpp \
+		startupsetting.cpp Z:/Documents/Qt/Robot/Robot_Server/robot_server_plugin_import.cpp \
 		release\qrc_myresourse.cpp \
 		release\moc_widget.cpp \
 		release\moc_actionmanager.cpp \
@@ -200,26 +200,6 @@ DESTDIR_TARGET = release\Robot_Server.exe
 	$<
 <<
 
-{C:/Users/wayneliu/Desktop/Robot/Robot_Server}.cpp{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{C:/Users/wayneliu/Desktop/Robot/Robot_Server}.cc{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{C:/Users/wayneliu/Desktop/Robot/Robot_Server}.cxx{release\}.obj::
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
-{C:/Users/wayneliu/Desktop/Robot/Robot_Server}.c{release\}.obj::
-	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
-	$<
-<<
-
 {Robot}.cpp{release\}.obj::
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
 	$<
@@ -300,6 +280,26 @@ DESTDIR_TARGET = release\Robot_Server.exe
 	$<
 <<
 
+{Z:/Documents/Qt/Robot/Robot_Server}.cpp{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+	$<
+<<
+
+{Z:/Documents/Qt/Robot/Robot_Server}.cc{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+	$<
+<<
+
+{Z:/Documents/Qt/Robot/Robot_Server}.cxx{release\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Forelease\ @<<
+	$<
+<<
+
+{Z:/Documents/Qt/Robot/Robot_Server}.c{release\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Forelease\ @<<
+	$<
+<<
+
 ####### Build rules
 
 first: all
@@ -322,7 +322,7 @@ clean: compiler_clean
 	-$(DEL_FILE) release\main.obj release\widget.obj release\task.obj release\base.obj release\taskmanager.obj release\command.obj release\actionmanager.obj release\robot.obj release\robot_communication.obj release\tooling.obj release\tooling_communication.obj release\ccd.obj release\EventManager.obj release\eventmessage.obj release\tooling_gui.obj release\robot_gui.obj release\ccd_communication.obj release\ccd_gui.obj release\snprescandialog.obj release\startupsetting.obj release\robot_server_plugin_import.obj release\qrc_myresourse.obj release\moc_widget.obj release\moc_actionmanager.obj release\moc_robot.obj release\moc_robot_communication.obj release\moc_tooling.obj release\moc_tooling_communication.obj release\moc_ccd.obj release\moc_tooling_gui.obj release\moc_robot_gui.obj release\moc_ccd_communication.obj release\moc_ccd_gui.obj release\moc_snprescandialog.obj release\moc_startupsetting.obj
 
 distclean: clean 
-	-$(DEL_FILE) C:\Users\wayneliu\Desktop\Robot\Robot_Server\robot_server_plugin_import.cpp
+	-$(DEL_FILE) Z:\Documents\Qt\Robot\Robot_Server\robot_server_plugin_import.cpp
 	-$(DEL_FILE) $(DESTDIR_TARGET)
 	-$(DEL_FILE) Makefile.Release
 
@@ -622,7 +622,7 @@ release\moc_widget.cpp: C:\qt5-x86-static-release\include\QtWidgets\QWidget \
 		startupsetting.h \
 		widget.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore widget.h -o release\moc_widget.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore widget.h -o release\moc_widget.cpp
 
 release\moc_actionmanager.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -684,7 +684,7 @@ release\moc_actionmanager.cpp: C:\qt5-x86-static-release\include\QtCore\QObject 
 		command.h \
 		actionmanager.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore actionmanager.h -o release\moc_actionmanager.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore actionmanager.h -o release\moc_actionmanager.cpp
 
 release\moc_robot.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -805,7 +805,7 @@ release\moc_robot.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		event\EventManager.h \
 		Robot\robot.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Robot\robot.h -o release\moc_robot.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Robot\robot.h -o release\moc_robot.cpp
 
 release\moc_robot_communication.cpp: C:\qt5-x86-static-release\include\QtNetwork\QTcpSocket \
 		C:\qt5-x86-static-release\include\QtNetwork\qtcpsocket.h \
@@ -923,7 +923,7 @@ release\moc_robot_communication.cpp: C:\qt5-x86-static-release\include\QtNetwork
 		C:\qt5-x86-static-release\include\QtGui\qtouchdevice.h \
 		Robot\robot_communication.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Robot\robot_communication.h -o release\moc_robot_communication.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Robot\robot_communication.h -o release\moc_robot_communication.cpp
 
 release\moc_tooling.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -1063,7 +1063,7 @@ release\moc_tooling.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		event\eventmessage.h \
 		Tooling\tooling.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Tooling\tooling.h -o release\moc_tooling.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Tooling\tooling.h -o release\moc_tooling.cpp
 
 release\moc_tooling_communication.cpp: C:\qt5-x86-static-release\include\QtNetwork\QTcpSocket \
 		C:\qt5-x86-static-release\include\QtNetwork\qtcpsocket.h \
@@ -1179,7 +1179,7 @@ release\moc_tooling_communication.cpp: C:\qt5-x86-static-release\include\QtNetwo
 		C:\qt5-x86-static-release\include\QtGui\qtouchdevice.h \
 		Tooling\tooling_communication.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Tooling\tooling_communication.h -o release\moc_tooling_communication.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Tooling\tooling_communication.h -o release\moc_tooling_communication.cpp
 
 release\moc_ccd.cpp: C:\qt5-x86-static-release\include\QtCore\QString \
 		C:\qt5-x86-static-release\include\QtCore\qstring.h \
@@ -1303,7 +1303,7 @@ release\moc_ccd.cpp: C:\qt5-x86-static-release\include\QtCore\QString \
 		Event\EventManager.h \
 		CCD\ccd.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore CCD\ccd.h -o release\moc_ccd.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore CCD\ccd.h -o release\moc_ccd.cpp
 
 release\moc_tooling_gui.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -1454,7 +1454,7 @@ release\moc_tooling_gui.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtWidgets\qlistview.h \
 		Tooling\tooling_gui.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Tooling\tooling_gui.h -o release\moc_tooling_gui.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Tooling\tooling_gui.h -o release\moc_tooling_gui.cpp
 
 release\moc_robot_gui.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -1579,7 +1579,7 @@ release\moc_robot_gui.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		event\EventManager.h \
 		Robot\robot_gui.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Robot\robot_gui.h -o release\moc_robot_gui.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore Robot\robot_gui.h -o release\moc_robot_gui.cpp
 
 release\moc_ccd_communication.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -1658,7 +1658,7 @@ release\moc_ccd_communication.cpp: C:\qt5-x86-static-release\include\QtCore\QObj
 		command.h \
 		CCD\ccd_communication.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore CCD\ccd_communication.h -o release\moc_ccd_communication.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore CCD\ccd_communication.h -o release\moc_ccd_communication.cpp
 
 release\moc_ccd_gui.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -1785,7 +1785,7 @@ release\moc_ccd_gui.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtWidgets\qlabel.h \
 		CCD\ccd_gui.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore CCD\ccd_gui.h -o release\moc_ccd_gui.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore CCD\ccd_gui.h -o release\moc_ccd_gui.cpp
 
 release\moc_snprescandialog.cpp: C:\qt5-x86-static-release\include\QtWidgets\QDialog \
 		C:\qt5-x86-static-release\include\QtWidgets\qdialog.h \
@@ -1934,7 +1934,7 @@ release\moc_snprescandialog.cpp: C:\qt5-x86-static-release\include\QtWidgets\QDi
 		C:\qt5-x86-static-release\include\QtGui\QCloseEvent \
 		snprescandialog.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore snprescandialog.h -o release\moc_snprescandialog.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore snprescandialog.h -o release\moc_snprescandialog.cpp
 
 release\moc_startupsetting.cpp: C:\qt5-x86-static-release\include\QtCore\QObject \
 		C:\qt5-x86-static-release\include\QtCore\qobject.h \
@@ -2080,7 +2080,7 @@ release\moc_startupsetting.cpp: C:\qt5-x86-static-release\include\QtCore\QObject
 		C:\qt5-x86-static-release\include\QtCore\qbasictimer.h \
 		startupsetting.h \
 		C:\qt5-x86-static-release\bin\moc.exe
-	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IC:/Users/wayneliu/Desktop/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore startupsetting.h -o release\moc_startupsetting.cpp
+	C:\qt5-x86-static-release\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -IC:/qt5-x86-static-release/mkspecs/win32-msvc2013 -IZ:/Documents/Qt/Robot/Robot_Server -IC:/qt5-x86-static-release/include -IC:/qt5-x86-static-release/include/QtWidgets -IC:/qt5-x86-static-release/include/QtGui -IC:/qt5-x86-static-release/include/QtNetwork -IC:/qt5-x86-static-release/include/QtCore startupsetting.h -o release\moc_startupsetting.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -5318,7 +5318,7 @@ release\startupsetting.obj: startupsetting.cpp startupsetting.h \
 		C:\qt5-x86-static-release\include\QtCore\QSettings \
 		C:\qt5-x86-static-release\include\QtCore\qsettings.h
 
-release\robot_server_plugin_import.obj: C:/Users/wayneliu/Desktop/Robot/Robot_Server/robot_server_plugin_import.cpp 
+release\robot_server_plugin_import.obj: Z:/Documents/Qt/Robot/Robot_Server/robot_server_plugin_import.cpp 
 
 release\qrc_myresourse.obj: release\qrc_myresourse.cpp 
 

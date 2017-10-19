@@ -265,6 +265,7 @@ void Widget::on_Button_Start_clicked()
 
 bool Widget::checkDeviceAllConnected()
 {
+    //檢查手臂連線狀態
     while(robot->state != Robot::ONLINE)
     {
         if(QMessageBox::critical(this, tr("Error"), tr("Robot connection error\nDo you want to reconnect?"),
@@ -276,12 +277,14 @@ bool Widget::checkDeviceAllConnected()
         }
     }
 
+    //檢查CCD連線狀態
     if(ccd->state == CCD::OFFLINE)
     {
         QMessageBox::critical(this, tr("Error"), tr("CCD connection error"),QMessageBox::Ok);
         return false;
     }
 
+    //檢查tooling連線狀態, 至少要有一台連線
     if(tooling_1->state == Tooling::OFFLINE && tooling_2->state == Tooling::OFFLINE && tooling_3->state == Tooling::OFFLINE )
     {
         QMessageBox::critical(this, tr("Error"), tr("Tooling connection error"),QMessageBox::Ok);

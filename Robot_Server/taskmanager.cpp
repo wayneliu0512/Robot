@@ -243,12 +243,15 @@ void TaskManager::CCD_ScanError_Listener(const EventMessage &msg)
 //    fireEvent(command.task_event.workList_Waiting_Add, msg);
 }
 
+//Done 列表增加時
 void TaskManager::Task_workList_DONE_Add(const EventMessage &msg)
 {
     recordLog();
     clearDoneList();
+
     Task doneTask = Widget::workList_Done.last();
 
+    //去判斷tooling 是否 idle
     fireEvent(command.tooling_event.takeOut, msg);
 
     if(doneTask.nextTask != nullptr)
@@ -272,6 +275,7 @@ void TaskManager::Task_workList_DONE_Add(const EventMessage &msg)
     }
 }
 
+//清除Done 列表 超過20項的項目
 void TaskManager::clearDoneList()
 {
     if(Widget::workList_Done.length() > 20)
@@ -283,6 +287,7 @@ void TaskManager::clearDoneList()
     fireEvent(command.task_event.workList_DONE_Removed, msg);
 }
 
+//紀錄Log
 void TaskManager::recordLog()
 {
     Task task = Widget::workList_Done.last();

@@ -114,7 +114,6 @@ private slots:
     //GUI 觸發
     void on_Button_Start_clicked();
     void on_Button_Stop_clicked();   
-    void on_comboBox_activated(const QString &arg1);
 
     //用於閃爍的計時器
     void flashingTimerReset();

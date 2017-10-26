@@ -17,6 +17,7 @@ public:
 
     QString robotIP;
 
+    QString toolingLogPath;
     //儲存Base座標系的列表 [0]=第一個機台的offset值, [1]=第二個機台的offset值
     QVector<Base> offsetList;
 

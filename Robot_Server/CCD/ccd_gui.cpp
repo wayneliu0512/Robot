@@ -34,26 +34,8 @@ void CCD_GUI::updateGUI(CCD::State _state)
         break;
     case CCD::FINISH_SHOT:
         light->setPixmap(QPixmap(":/new/prefix1/IMG_Green.png"));
-
-        switch (ccd->toolingNum) {
-        case 1:
-            label_SN->setText(CCD::tooling1_SN);
-            label_MAC->setText(CCD::tooling1_MAC);
-            break;
-        case 2:
-            label_SN->setText(CCD::tooling2_SN);
-            label_MAC->setText(CCD::tooling2_MAC);
-            break;
-        case 3:
-            label_SN->setText(CCD::tooling3_SN);
-            label_MAC->setText(CCD::tooling3_MAC);
-            break;
-        default:
-            label_SN->setText("Error");
-            label_MAC->setText("Error");
-            break;
-        }
-
+        label_SN->setText(CCD::SN);
+        label_MAC->setText(CCD::MAC);
         break;
     }
 }

@@ -1,536 +1,72 @@
-Time    : 15:42:11
+Time    : 16:59:10
 Command : Robot_updateBase1_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:42:12
+Time    : 16:59:14
 Command : Robot_updateBase2_ActionType
 TargetID: 2
 -------------------------------------------------------
-Time    : 15:42:13
+Time    : 16:59:18
 Command : Robot_updateBase3_ActionType
 TargetID: 3
 -------------------------------------------------------
-Time    : 15:44:43
-Command : Robot_toScan_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 15:44:45
-Command : CCD_StartScan_SN_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 15:44:48
-Command : Robot_toScanMAC_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 15:44:50
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 15:45:16
-Command : Robot_toTooling_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 15:45:17
-Command : Tooling_PowerOn_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 15:45:19
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 15:46:01
-Command : Robot_toScan_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:46:02
-Command : CCD_StartScan_SN_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:46:05
-Command : Robot_toScanMAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:46:11
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:46:28
-Command : Robot_toTooling_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:46:29
-Command : Tooling_PowerOn_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:46:31
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 15:47:13
+Time    : 16:59:22
 Command : Robot_toScan_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:47:15
+Time    : 16:59:25
 Command : CCD_StartScan_SN_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:47:19
+Time    : 16:59:27
 Command : Robot_toScanMAC_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:47:20
+Time    : 16:59:30
 Command : CCD_StartScan_MAC_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:47:37
+Time    : 16:59:31
 Command : Robot_toTooling_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:47:38
+Time    : 16:59:35
 Command : Tooling_PowerOn_ActionType
 TargetID: 1
 -------------------------------------------------------
-Time    : 15:47:40
+Time    : 16:59:39
 Command : Robot_updateTray_ActionType
 TargetID: 0
--------------------------------------------------------
-Time    : 15:53:32
-Command : Tooling_PowerOff_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:54:17
-Command : Robot_toFAIL_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:54:20
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 15:55:24
-Command : Robot_toScan_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:55:26
-Command : CCD_StartScan_SN_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:55:32
-Command : Robot_toScanMAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:55:34
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:56:14
-Command : Robot_toTooling_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:56:15
-Command : Tooling_PowerOn_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 15:56:32
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 15:56:33
-Command : Tooling_PowerOff_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:57:25
-Command : Robot_toFAIL_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:57:28
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 15:58:11
-Command : Robot_toScan_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:58:12
-Command : CCD_StartScan_SN_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:58:15
-Command : Robot_toScanMAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:58:16
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:58:34
-Command : Robot_toTooling_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:58:35
-Command : Tooling_PowerOn_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 15:58:37
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:07:29
-Command : Tooling_PowerOff_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:09:19
-Command : Robot_toFAIL_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:09:22
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:16:43
-Command : Robot_toScan_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:16:45
-Command : CCD_StartScan_SN_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:16:48
-Command : Robot_toScanMAC_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:16:51
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:17:18
-Command : Robot_toTooling_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:17:20
-Command : Tooling_PowerOn_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:17:21
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:17:23
-Command : Tooling_PowerOff_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:18:12
-Command : Robot_toFAIL_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:18:28
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:19:22
-Command : Robot_toScan_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:19:23
-Command : CCD_StartScan_SN_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:19:26
-Command : Robot_toScanMAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:19:27
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:19:49
-Command : Robot_toTooling_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:19:50
-Command : Tooling_PowerOn_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:19:53
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:19:53
-Command : Tooling_PowerOff_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:20:41
-Command : Robot_toFAIL_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:20:44
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:21:58
-Command : Robot_toScan_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:22:00
-Command : CCD_StartScan_SN_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:22:02
-Command : Robot_toScanMAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:22:04
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:22:24
-Command : Robot_toTooling_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:22:25
-Command : Tooling_PowerOn_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:22:39
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:23:17
-Command : Tooling_PowerOff_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:24:33
-Command : Robot_toFAIL_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:24:36
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:25:25
-Command : Robot_toScan_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:25:27
-Command : CCD_StartScan_SN_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:25:30
-Command : Robot_toScanMAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:25:31
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:25:54
-Command : Robot_toTooling_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:25:55
-Command : Tooling_PowerOn_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:25:58
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:32:52
-Command : Tooling_PowerOff_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:34:46
-Command : Robot_toFAIL_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:34:49
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:35:33
-Command : Robot_toScan_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:35:34
-Command : CCD_StartScan_SN_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:35:37
-Command : Robot_toScanMAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:35:59
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:36:22
-Command : Robot_toTooling_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:36:24
-Command : Tooling_PowerOn_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:36:26
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:37:17
-Command : Tooling_PowerOff_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:39:08
-Command : Robot_toPASS_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:39:11
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:40:32
-Command : Robot_toScan_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:40:34
-Command : CCD_StartScan_SN_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:40:39
-Command : Robot_toScanMAC_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:40:40
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:43:01
-Command : Robot_toTooling_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:43:02
-Command : Tooling_PowerOn_ActionType
-TargetID: 3
--------------------------------------------------------
-Time    : 16:43:04
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:43:05
-Command : Tooling_PowerOff_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:44:17
-Command : Robot_toFAIL_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:44:34
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:46:55
-Command : Robot_toScan_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:46:56
-Command : CCD_StartScan_SN_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:47:01
-Command : Robot_toScanMAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:47:05
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:47:26
-Command : Robot_toTooling_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:47:28
-Command : Tooling_PowerOn_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:47:43
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:53:02
-Command : Tooling_PowerOff_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:55:18
-Command : Robot_toFAIL_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:55:21
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:56:03
-Command : Robot_toScan_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:56:04
-Command : CCD_StartScan_SN_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:56:07
-Command : Robot_toScanMAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:56:08
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:56:26
-Command : Robot_toTooling_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:56:27
-Command : Tooling_PowerOn_ActionType
-TargetID: 1
--------------------------------------------------------
-Time    : 16:56:29
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:56:30
-Command : Tooling_PowerOff_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:57:20
-Command : Robot_toFAIL_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:57:23
-Command : Robot_updateTray_ActionType
-TargetID: 0
--------------------------------------------------------
-Time    : 16:59:40
-Command : Robot_toScan_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:59:42
-Command : CCD_StartScan_SN_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 16:59:47
-Command : Robot_toScanMAC_ActionType
-TargetID: 2
 -------------------------------------------------------
 Time    : 16:59:48
-Command : CCD_StartScan_MAC_ActionType
-TargetID: 2
+Command : Tooling_PowerOff_ActionType
+TargetID: 1
 -------------------------------------------------------
-Time    : 17:00:18
-Command : Robot_toTooling_ActionType
-TargetID: 2
+Time    : 16:59:53
+Command : Robot_toPASS_ActionType
+TargetID: 1
 -------------------------------------------------------
-Time    : 17:00:19
-Command : Tooling_PowerOn_ActionType
-TargetID: 2
--------------------------------------------------------
-Time    : 17:00:21
+Time    : 16:59:57
 Command : Robot_updateTray_ActionType
 TargetID: 0
+-------------------------------------------------------
+Time    : 17:00:01
+Command : Robot_toScan_ActionType
+TargetID: 1
+-------------------------------------------------------
+Time    : 17:00:03
+Command : CCD_StartScan_SN_ActionType
+TargetID: 1
+-------------------------------------------------------
+Time    : 17:00:05
+Command : Robot_toScanMAC_ActionType
+TargetID: 1
+-------------------------------------------------------
+Time    : 17:00:07
+Command : CCD_StartScan_MAC_ActionType
+TargetID: 1
+-------------------------------------------------------
+Time    : 17:00:10
+Command : Robot_toTooling_ActionType
+TargetID: 1
 -------------------------------------------------------

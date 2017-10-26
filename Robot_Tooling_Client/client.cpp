@@ -152,7 +152,12 @@ void Client::readyRead_serial()
         {
             qDebug() << "fail";
             timer->stop();
-            controlWAutoMESProgram_FAIL();
+            //controlWAutoMESProgram_FAIL();
+            serial->write("C");
+            qDebug() << "SendToDOS >> C";
+
+            socket->write("test fail");
+            qDebug() << "Send to socket >> test fail";
 
             dataBuffer.clear();
         }else
@@ -218,7 +223,11 @@ void Client::controlWAutoMESProgram_PASS()
     WCHAR catcher[10000] = {0};
     WCHAR SN_char[100] = {0};
     WCHAR SN_Enter_char[100] = {0};
-    WCHAR MAC1_char[100] = {0};    
+    WCHAR MAC1_char[100] = {0};
+    WCHAR MAC1_Quantity_char[100] = {0};
+
+    QString MAC1_Quantity = "1";
+    MAC1_Quantity.toWCharArray(MAC1_Quantity_char);
 
     QString SN_Enter = SN + "{ENTER}";
     SN_Enter.toWCharArray(SN_Enter_char);
@@ -238,6 +247,16 @@ void Client::controlWAutoMESProgram_PASS()
     AU3_WinActivate(L"Auto Shopfloor System v1.0.9", L"");
     AU3_ControlFocus(L"Auto Shopfloor System v1.0.9", L"", L"[CLASS:ThunderRT6TextBox; INSTANCE:3]");
     AU3_Send(SN_Enter_char);
+
+    //Click MessageBox
+    QThread::sleep(2);
+    if(AU3_WinActivate(L"Message", L"") != 0)
+    {
+        AU3_ControlClick(L"Message", L"", L"[CLASS:Button; INSTANCE:2]", L"left", 1);
+
+        QThread::sleep(2);
+        AU3_ControlClick(L"Message", L"", L"[CLASS:Button; INSTANCE:1]", L"left", 1);
+    }
 
     //Count AutoMES resultText length
     QThread::sleep(2);

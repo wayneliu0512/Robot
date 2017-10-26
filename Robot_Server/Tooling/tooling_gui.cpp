@@ -55,6 +55,7 @@ void Tooling_GUI::updateGUI(Tooling::State _state)
     {
     case Tooling::ONLINE:
         clockTimer->stop();
+        tooling->recordToolingLog(*testItemList);
         setLight(GREEN, false);
         testItemList->clear();
         list->clear();

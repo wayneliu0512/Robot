@@ -26,12 +26,15 @@ Widget::Widget(QWidget *parent) :
     socket = new QTcpSocket;
 
     tooling_1 = new Tooling(1);
+    tooling_1->setLogPath(setting->toolingLogPath);
     tooling_GUI_1 = new Tooling_GUI(tooling_1, ui->listWidget_Box1, ui->pixmap_Box1, ui->lcdNumber_Box1, flashTimer);
 
     tooling_2 = new Tooling(2);
+    tooling_2->setLogPath(setting->toolingLogPath);
     tooling_GUI_2 = new Tooling_GUI(tooling_2, ui->listWidget_Box2, ui->pixmap_Box2, ui->lcdNumber_Box2, flashTimer);
 
     tooling_3 = new Tooling(3);
+    tooling_3->setLogPath(setting->toolingLogPath);
     tooling_GUI_3 = new Tooling_GUI(tooling_3, ui->listWidget_Box3, ui->pixmap_Box3, ui->lcdNumber_Box3, flashTimer);
 
     ccd = new CCD;
@@ -101,10 +104,7 @@ void Widget::createAllEvent()
     myEventManager->createEvent(command.tooling_event.Idle);
     myEventManager->createEvent(command.tooling_event.powerOn);
     myEventManager->createEvent(command.tooling_event.powerOff);
-    myEventManager->createEvent(command.tooling_event.AirUp);
-    myEventManager->createEvent(command.tooling_event.AirDown);
     myEventManager->createEvent(command.tooling_event.sendSocket);
-    myEventManager->createEvent(command.tooling_event.reTest);
 
     //Create CCD Event
     myEventManager->createEvent(command.ccd_event.startScanSN);
@@ -154,6 +154,7 @@ void Widget::newConnection()
 
 void Widget::readyRead()
 {
+
     QTcpSocket * _socket = qobject_cast<QTcpSocket*>(sender());
 
     QString stringFromClient;
@@ -318,38 +319,6 @@ void Widget::updateTable(const EventMessage& msg)
     changeTable1();
     changeTable2();
     changeTable3();
-}
-
-void Widget::on_comboBox_activated(const QString &arg1)
-{
-    if(arg1.contains("SN"))
-    {
-        Task task(Task::Robot, command.robot_command.toScanSN);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1.contains("MAC"))
-    {
-        Task task(Task::Robot, command.robot_command.toScanMAC);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1.contains("Tooling"))
-    {
-        Task task(Task::Robot, command.robot_command.toTooling);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1.contains("PASS"))
-    {
-        Task task(Task::Robot, command.robot_command.toPASS);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }else if(arg1. contains("FAIL"))
-    {
-        Task task(Task::Robot, command.robot_command.toFAIL);
-        task.targetID = 2;
-        Widget::workList_Waiting.append(task);
-    }
-    EventMessage msg;
-    fireEvent(command.task_event.workList_Waiting_Add, msg);
 }
 
 //閃爍用的timer

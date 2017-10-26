@@ -351,41 +351,6 @@
      </property>
     </column>
    </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>91</x>
-      <y>30</y>
-      <width>141</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>toScanSN</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toScanMAC</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toTooling</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toPASS</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>toFAIL</string>
-     </property>
-    </item>
-   </widget>
   </widget>
   <widget class="QWidget" name="gridLayoutWidget_3">
    <property name="geometry">

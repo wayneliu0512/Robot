@@ -22,8 +22,6 @@ public:
 
     enum State {ONLINE, OFFLINE, START_TESTING}; //紀錄目前機台的狀態, 給GUI用
 
-    enum TestTime {FIRST_TEST, SECOND_TEST}; //第幾次測試
-
     Tooling(int _toolingNum);
 
     ~Tooling();
@@ -34,7 +32,11 @@ public:
 
     int toolingNum; //第幾號機箱
 
+    QString SN, MAC;
+
     void setSocket(QTcpSocket *tcpSocket);
+
+    void setLogPath(const QString &_path);
 
     void timeoutFailFire();
 
@@ -45,10 +47,10 @@ public:
         emit updateGUI(state);
     }
 
+    void recordToolingLog(const QStringList &_testItemList);
+
     //紀錄目前機台的狀態, 給GUI用
     State state;
-
-    TestTime testTime;
 
 signals:
 
@@ -61,6 +63,8 @@ private:
     Command command;
 
     QMessageBox msgBox;
+
+    QString logPath;
 
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.

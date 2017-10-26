@@ -15,7 +15,7 @@ Widget::Widget(QWidget *parent) :
 
     qDebug() << "Connecting,..";
 
-    socket->connectToHost("192.168.1.68", 1234);//"192.168.0.103" , "172.16.4.101", "10.211.55.3"
+    socket->connectToHost("172.20.10.8", 1234);//"192.168.0.103" , "172.16.4.101", "10.211.55.3"
     if(!socket->waitForConnected(1000))
     {
         qDebug() << "Connect Fail";

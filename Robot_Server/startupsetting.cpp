@@ -14,7 +14,8 @@ void StartUpSetting::readSetting()
     QSettings setting("Setting.ini",QSettings::IniFormat);
     port = setting.value("Option/Port").toInt();
     robotIP = setting.value("Option/RobotIP").toString();
-    robotPort = setting.value("Option/RobotPort").toInt();     
+    robotPort = setting.value("Option/RobotPort").toInt();
+    toolingLogPath = setting.value("Option/ToolingLogPath").toString();
 }
 
 void StartUpSetting::readBaseSetting()

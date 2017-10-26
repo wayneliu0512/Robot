@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHeaderView>
@@ -49,7 +48,6 @@ public:
     QTableWidget *tableWidget_1;
     QTableWidget *tableWidget_3;
     QTableWidget *tableWidget_2;
-    QComboBox *comboBox;
     QWidget *gridLayoutWidget_3;
     QGridLayout *gridLayout_3;
     QGroupBox *groupBox_5;
@@ -192,9 +190,6 @@ public:
         tableWidget_2->setHorizontalHeaderItem(2, __qtablewidgetitem8);
         tableWidget_2->setObjectName(QStringLiteral("tableWidget_2"));
         tableWidget_2->setGeometry(QRect(220, 90, 201, 171));
-        comboBox = new QComboBox(groupBox);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(91, 30, 141, 22));
         gridLayoutWidget_3 = new QWidget(Widget);
         gridLayoutWidget_3->setObjectName(QStringLiteral("gridLayoutWidget_3"));
         gridLayoutWidget_3->setGeometry(QRect(20, 20, 321, 91));
@@ -284,14 +279,6 @@ public:
         ___qtablewidgetitem7->setText(QApplication::translate("Widget", "TargetID", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem8 = tableWidget_2->horizontalHeaderItem(2);
         ___qtablewidgetitem8->setText(QApplication::translate("Widget", "Command", Q_NULLPTR));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("Widget", "toScanSN", Q_NULLPTR)
-         << QApplication::translate("Widget", "toScanMAC", Q_NULLPTR)
-         << QApplication::translate("Widget", "toTooling", Q_NULLPTR)
-         << QApplication::translate("Widget", "toPASS", Q_NULLPTR)
-         << QApplication::translate("Widget", "toFAIL", Q_NULLPTR)
-        );
         groupBox_5->setTitle(QApplication::translate("Widget", "BarcodeScanner", Q_NULLPTR));
         pixmap_Barcode->setText(QString());
         label_5->setText(QApplication::translate("Widget", "SN:", Q_NULLPTR));

@@ -22,6 +22,8 @@ public:
 
     enum State {ONLINE, OFFLINE, START_TESTING}; //紀錄目前機台的狀態, 給GUI用
 
+    enum TestTime {FIRST_TEST, SECOND_TEST}; //第幾次測試
+
     Tooling(int _toolingNum);
 
     ~Tooling();
@@ -45,6 +47,8 @@ public:
 
     //紀錄目前機台的狀態, 給GUI用
     State state;
+
+    TestTime testTime;
 
 signals:
 

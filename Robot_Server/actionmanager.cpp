@@ -93,13 +93,21 @@ void ActionManager::dispatch_First_Task()
         }
         break;
     case Task::Tooling:
-        if(commandStr.contains("On"))
+        if(commandStr == command.tooling_command.powerOn)
         {
             fireEvent(command.tooling_event.powerOn, messageCarryTask);
         }
-        else
+        else if(commandStr == command.tooling_command.powerOff)
         {
             fireEvent(command.tooling_event.powerOff, messageCarryTask);
+        }
+        else if(commandStr == command.tooling_command.AirUp)
+        {
+            fireEvent(command.tooling_event.AirUp, messageCarryTask);
+        }
+        else if(commandStr == command.tooling_command.AirDown)
+        {
+            fireEvent(command.tooling_event.AirDown, messageCarryTask);
         }
         break;
     case Task::CCD:

@@ -29,6 +29,7 @@ public:
     void Tooling_Boot_Listener(const EventMessage& msg);
     void Tooling_TimeoutFail_Listener(const EventMessage& msg);
     void Tooling_Idle_Listener(const EventMessage& msg);
+    void Tooling_ReTest_Listener(const EventMessage& msg);
 
     //監聽事件: CCD事件
     void CCD_ScanError_Listener(const EventMessage& msg);

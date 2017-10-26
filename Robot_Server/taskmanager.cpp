@@ -18,6 +18,7 @@ TaskManager::TaskManager()
     myEventManager->subscribe(command.tooling_event.timeoutFail, this, &TaskManager::Tooling_TimeoutFail_Listener);
     myEventManager->subscribe(command.tooling_event.boot, this, &TaskManager::Tooling_Boot_Listener);
     myEventManager->subscribe(command.tooling_event.Idle, this, &TaskManager::Tooling_Idle_Listener);
+    myEventManager->subscribe(command.tooling_event.reTest, this, &TaskManager::Tooling_ReTest_Listener);
 
     myEventManager->subscribe(command.ccd_communication_event.ACK, this, &TaskManager::ACK_Listener);
     myEventManager->subscribe(command.ccd_communication_event.DONE, this, &TaskManager::DONE_Listener);   
@@ -122,6 +123,34 @@ void TaskManager::Tooling_TestFail_Listener(const EventMessage &msg)
     delete taskToFAIL;
 
     fireEvent(command.task_event.workList_Waiting_Add, msg);
+}
+
+void TaskManager::Tooling_ReTest_Listener(const EventMessage &msg)
+{
+    Task *taskPowerOff = new Task(Task::Tooling, command.tooling_command.powerOff);
+    taskPowerOff->targetID = msg.toolingNum;
+    QThread::msleep(100);
+
+    Widget::workList_Waiting.append(*taskPowerOff);
+
+    Task *taskAirUp = new Task(Task::Tooling, command.tooling_command.AirUp);
+    taskAirUp->targetID = msg.toolingNum;
+    QThread::msleep(100);
+
+    Widget::workList_Waiting.append(*taskAirUp);
+
+    Task *taskAirDown = new Task(Task::Tooling, command.tooling_command.AirDown);
+    taskAirDown->targetID = msg.toolingNum;
+    QThread::msleep(100);
+
+    Widget::workList_Waiting.append(*taskAirDown);
+
+    Task *taskPowerOn = new Task(Task::Tooling, command.tooling_command.powerOn);
+    taskPowerOn->targetID = msg.toolingNum;
+    QThread::msleep(100);
+
+    Widget::workList_Waiting.append(*taskPowerOn);
+
 }
 
 void TaskManager::Tooling_TimeoutFail_Listener(const EventMessage &msg)

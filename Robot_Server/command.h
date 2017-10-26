@@ -57,6 +57,10 @@ public:
         QString powerOn = "Tooling_PowerOn_ActionType";
         //機箱關機
         QString powerOff = "Tooling_PowerOff_ActionType";
+        //氣壓上升
+        QString AirUp = "Tooling_AirUp_ActionType";
+        //氣壓下降
+        QString AirDown = "Tooling_AirDown_ActionType";
     };
 
     //有關Tooling的事件類型
@@ -66,6 +70,8 @@ public:
         QString testPASS = "Tooling_TestPass_Event";
         //機箱測試完畢FAIL
         QString testFAIL = "Tooling_TestFail_Event";
+        //機箱重測
+        QString reTest = "Tooling_ReTest_Event";
         //機箱測試時間過長(未開機)
         QString timeoutFail = "Tooling_TimeoutFail_Event";
         //機箱開機成功
@@ -78,6 +84,10 @@ public:
         QString powerOn = "Tooling_PowerOn_Event";
         //機箱關機
         QString powerOff = "Tooling_PowerOff_Event";
+
+        QString AirUp = "Tooling_AirUp_Event";
+
+        QString AirDown = "Tooling_AirDown_Event";
         //丟Socket給機台
         QString sendSocket = "Tooling_SendSocket_Event";
     };

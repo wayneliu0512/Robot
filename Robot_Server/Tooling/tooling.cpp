@@ -7,6 +7,7 @@ Tooling::Tooling(int _toolingNum)
     //socket = new QTcpSocket;
 
     state = Tooling::OFFLINE;
+    testTime = TestTime::FIRST_TEST;
 
     communication = new Tooling_Communication(toolingNum);
 
@@ -21,6 +22,8 @@ Tooling::Tooling(int _toolingNum)
     myEventManager->subscribe(command.tooling_event.takeOut, this, &Tooling::Tooling_Idle_Fire);
     myEventManager->subscribe(command.tooling_event.powerOn, this, &Tooling::powerOn_Listener);
     myEventManager->subscribe(command.tooling_event.powerOff, this, &Tooling::powerOff_Listener);
+    myEventManager->subscribe(command.tooling_event.AirUp, this, );
+    myEventManager->subscribe(command.tooling_event.AirDown, this, );
     myEventManager->subscribe(command.tooling_event.sendSocket, this, &Tooling::sendSocket_Listener);
 
 }
@@ -56,22 +59,51 @@ void Tooling::No_ACK_Event_Listener(const EventMessage &msg)
     if(msg.objectType == EventMessage::FromTooling && msg.toolingNum == toolingNum)
     {
         QString str = msg.data;
+
         if(str == "test pass")
         {
-            fireEvent(command.tooling_event.testPASS, msg);
+            if(Tooling::testTime == Tooling::FIRST_TEST)
+            {
+                testTime = Tooling::SECOND_TEST;
+                fireEvent(command.tooling_event.reTest, msg);
+            }else
+            {
+                fireEvent(command.tooling_event.testPASS, msg);
+            }
+
         }else if(str == "test fail")
         {
-            fireEvent(command.tooling_event.testFAIL, msg);
+            if(Tooling::testTime == Tooling::FIRST_TEST)
+            {
+                testTime = Tooling::SECOND_TEST;
+                fireEvent(command.tooling_event.reTest, msg);
+            }else
+            {
+                testTime = Tooling::FIRST_TEST;
+                fireEvent(command.tooling_event.testFAIL, msg);
+            }
+
         }else if(str == "boot")
         {
             fireEvent(command.tooling_event.boot, msg);
+
         }else if(str == "timeout fail")
         {
-            fireEvent(command.tooling_event.timeoutFail, msg);
+            if(Tooling::testTime == Tooling::FIRST_TEST)
+            {
+                testTime = Tooling::SECOND_TEST;
+                fireEvent(command.tooling_event.reTest, msg);
+            }else
+            {
+                testTime = Tooling::FIRST_TEST;
+                fireEvent(command.tooling_event.timeoutFail, msg);
+            }
+
         }else if(str.contains("ERROR"))
         {
             fireEvent(command.tooling_event.testFAIL, msg);
 //            fireEvent(command.task_event.Error, msg);
+
         }
     }
 }
@@ -106,11 +138,25 @@ void Tooling::powerOn_Listener(const EventMessage &msg)
         return;
     }
 
-    //Prepare SN, MAC to send
-    QString sendData = CCD::SN + ";" + CCD::MAC;
-    //Reset SN, MAC Buffer
-    CCD::SN.clear();
-    CCD::MAC.clear();
+    switch (toolingNum) {
+    case 1:
+        //Prepare SN, MAC to send
+        QString sendData = CCD::tooling1_SN + ";" + CCD::tooling1_MAC;
+        break;
+    case 2:
+        //Prepare SN, MAC to send
+        QString sendData = CCD::tooling2_SN + ";" + CCD::tooling2_MAC;
+        break;
+    case 3:
+        //Prepare SN, MAC to send
+        QString sendData = CCD::tooling3_SN + ";" + CCD::tooling3_MAC;
+        break;
+
+    default:
+        QMessageBox::critical(this, tr("Warning"), tr("Error: Tooling::PowerOn_Listener"));
+        break;
+    }
+
     //Send data to tooling
     communication->sendData(sendData);
 

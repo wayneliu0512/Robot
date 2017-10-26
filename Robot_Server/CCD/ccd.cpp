@@ -3,9 +3,12 @@
 #include "QDebug"
 #include <QMessageBox>
 
-QString CCD::SN = "";
-QString CCD::MAC = "";
-
+QString CCD::tooling1_SN = "";
+QString CCD::tooling1_MAC = "";
+QString CCD::tooling2_SN = "";
+QString CCD::tooling2_MAC = "";
+QString CCD::tooling3_SN = "";
+QString CCD::tooling3_MAC = "";
 CCD::CCD()
 {
     state = CCD::OFFLINE;

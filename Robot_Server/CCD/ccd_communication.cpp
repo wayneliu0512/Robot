@@ -2,6 +2,7 @@
 #include "CCD/ccd.h"
 #include "QJsonObject"
 #include "QJsonDocument"
+#include <QMessageBox>
 
 CCD_Communication::CCD_Communication(QTcpSocket *_socket)
 {
@@ -61,10 +62,10 @@ void CCD_Communication::readyRead()
             qDebug() << "DONE Back << " + readData;
 
             if(!SN_value.isUndefined())
-                CCD::SN = SN_value.toString();
+                updateSN(SN_value.toString());
 
             if(!MAC_value.isUndefined())
-                CCD::MAC = MAC_value.toString();
+                updateMAC(MAC_value.toString());
 
             updateState(CCD_Communication::RECEIVE_DONE);
 
@@ -72,6 +73,42 @@ void CCD_Communication::readyRead()
             DONE_ID.clear();
             fireEvent(command.ccd_communication_event.DONE, msg);
         }
+    }
+}
+
+void CCD_Communication::updateSN(const QString &_SN)
+{
+    switch(toolingNum)
+    {
+    case 1:
+        CCD::tooling1_SN = _SN;
+        break;
+    case 2:
+        CCD::tooling2_SN = _SN;
+        break;
+    case 3:
+        CCD::tooling3_SN = _SN;
+        break;
+    default:
+        QMessageBox::critical(this, tr("Warning"), tr("Error: CCD_Communication/updateSN"));
+    }
+}
+
+void CCD_Communication::updateMAC(const QString &_MAC)
+{
+    switch(toolingNum)
+    {
+    case 1:
+        CCD::tooling1_MAC = _MAC;
+        break;
+    case 2:
+        CCD::tooling2_MAC = _MAC;
+        break;
+    case 3:
+        CCD::tooling3_MAC = _MAC;
+        break;
+    default:
+        QMessageBox::critical(this, tr("Warning"), tr("Error: CCD_Communication/updateMAC"));
     }
 }
 

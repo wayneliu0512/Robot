@@ -45,6 +45,10 @@ private:
 
     int toolingNum;
 
+    void updateSN(const QString &_SN);
+
+    void updateMAC(const QString &_MAC);
+
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.
       EventManager *myEventManager = EventManager::Instance();

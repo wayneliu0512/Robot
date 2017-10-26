@@ -24,7 +24,7 @@ public:
 
     void setSocket(QTcpSocket *_socket);
 
-    static QString SN, MAC;
+    static QString tooling1_SN, tooling1_MAC, tooling2_SN, tooling2_MAC, tooling3_SN, tooling3_MAC;
 
     //紀錄目前機台的狀態, 給GUI用
     void updateState(CCD::State _state)
@@ -34,6 +34,8 @@ public:
     }
 
     State state;
+
+    int toolingNum;
 
 signals:
 
@@ -46,8 +48,6 @@ private:
     Command command;
     //暫時的假ID, 製造假的ACK回傳
     QString ID;
-
-    int toolingNum;
 
     void fireEvent(const QString& str, const EventMessage& msg) {
       // Fire the event and all the subscribed class methods will get called.

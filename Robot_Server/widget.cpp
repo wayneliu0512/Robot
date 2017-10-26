@@ -101,7 +101,10 @@ void Widget::createAllEvent()
     myEventManager->createEvent(command.tooling_event.Idle);
     myEventManager->createEvent(command.tooling_event.powerOn);
     myEventManager->createEvent(command.tooling_event.powerOff);
+    myEventManager->createEvent(command.tooling_event.AirUp);
+    myEventManager->createEvent(command.tooling_event.AirDown);
     myEventManager->createEvent(command.tooling_event.sendSocket);
+    myEventManager->createEvent(command.tooling_event.reTest);
 
     //Create CCD Event
     myEventManager->createEvent(command.ccd_event.startScanSN);
@@ -151,7 +154,6 @@ void Widget::newConnection()
 
 void Widget::readyRead()
 {
-
     QTcpSocket * _socket = qobject_cast<QTcpSocket*>(sender());
 
     QString stringFromClient;

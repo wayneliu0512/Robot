@@ -106,16 +106,21 @@ void Client::readyRead_socket()
     QString data = socket->readAll();
     qDebug() << "Receive from socket << " + data;
 
-    QStringList dataList = data.split(';');
-
-    if(data.contains("reTest"))
+    if(data.contains(';'))
+    {
+        QStringList dataList = data.split(';');
+        SN = dataList.at(0);
+        MAC1 = dataList.at(1);
+    }
+    else if(data.contains("reTest"))
     {
         reTestSignal = true;
     }
     else
     {
-        SN = dataList.at(0);
-        MAC1 = dataList.at(1);
+        qDebug() << "Error: readyRead_socket ";
+        socket->flush();
+        return;
     }
 
     timerCounter = 0;
